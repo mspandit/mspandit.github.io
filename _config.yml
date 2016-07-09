@@ -9,9 +9,9 @@
 title: Now Interactive LLC
 email: mspandit@now-interactive.net
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Now Interactive LLC employs agile and test-driven development methodologies 
+  for extremely rapid delivery of marketing, customer service, and electronic 
+  commerce solutions.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://blog.now-interactive.net" # the base hostname & protocol for your site
 twitter_username: nwntrctv
