@@ -21,7 +21,10 @@ models based on chatbots.
 This recalls the vision of an intelligent agent that can interface with
 disparate applications or APIs, and provide a uniform (preferrably spoken or
 conversational) interface to the data they provide and the functions they
-perform. (See [Cognitive Code](http://www.cognitivecode.com/).)
+perform. (See [Cognitive Code](http://www.cognitivecode.com/). Update:
+Microsoft recently [purchased][msft-purchase] a company called [Wand
+Labs](http://wandlabs.com/) which was chartered to "tear down app walls,
+integrate your services in chat and make them work together.")
 
 The value propositions of Hubot seem to be
 
@@ -55,3 +58,4 @@ a competitive advantage for the envisioned business
 
 [wired-article]: http://www.wired.com/2015/10/the-most-important-startups-hardest-worker-isnt-a-person/?mbid=social_twitter
 [wired-article2]: http://www.wired.com/2015/08/slack-overrun-bots-friendly-wonderful-bots/
+[msft-purchase]: https://techcrunch.com/2016/06/16/microsoft-buys-wand-labs-to-add-more-natural-language-tech-to-messaging-apps-and-bots/
