@@ -76,13 +76,21 @@ The business model considered in the previous [post][prior-post] seems to
 remain valid: Organizations that are already using one of the above messaging
 platforms might be willing to pay for a bot that provides information and
 services highly relevant to the enterprise---information and services that
-would otherwise require costly human mediation or time-consuming search.
-Competitive advantage in such a model will arise from 
+would otherwise require costly human mediation or time-consuming search. One
+example is [Wade & Wendy](http://wadeandwendy.ai/), a conversational recruiting
+bot. NextIT has been in this space for some time, and
+[butter.ai](http://butter.ai/) is providing enterprise file search through a
+conversational interface. Competitive advantage in such a model will arise from
 
 * selling capabilities beyond those of the IT departments of organizations, 
 * speed and efficiency (cost) of implementation, 
 * levels of automation, eliminating human labor,
 * customization to the specific needs of the organization.
+
+This model would also apply to companies that provide a conversational UI to
+existing complex applications. For example, [sudo.ai](https://www.sudo.ai/) and
+[Birdly](https://salesforce.getbirdly.com/), which provide a conversational UI
+to Salesforce.com.
 
 Facebook seems to be enabling brand engagement via the Messenger Platform, and
 the business model here is obviously very marketing oriented. Marketing and IT
