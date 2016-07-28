@@ -16,7 +16,7 @@ how it might support Google's business model.
 
 # Summary of Predictions
 
-* Google search is presently characterized by two types of responses to keyword queries: ranked web pages and advertisements. Search will expand to include natural language dialogue responses to natural language queries. (There is not a black-and-white distinction between natural language queries and keyword queries. The responses could be a similar blend.)
+* Google search is presently characterized by two types of responses to keyword queries: ranked web pages and advertisements. Search will expand to include natural language dialogue responses to natural language queries. (There is not a black-and-white distinction between natural language queries and keyword queries. The responses could be a similar blend.) (See [Google Assistant](https://techcrunch.com/2016/05/18/google-unveils-google-assistant-a-big-upgrade-to-google-now/).)
 
 * Google search presently exploits context that is implicit and not volunteered by the user, at least not at the time of query. This has the benefit of "magically" relevant responses, but also has a "creep factor." Natural language dialogue will consume more of a user's time, but have the benefit of explicit, immediate, and voluntary context. This in turn will be rewarded with precise, relevant results.
 
@@ -95,7 +95,7 @@ ting-more-and-talking-less/#79287be45576) recently published the results of a
 Gallup Poll: "Text messages now outrank phone calls as the dominant method of
 communication among Millennials." It is reasonable to conclude, therefore, that
 chatbot dialogue is a natural next step in Google's pursuit of its stated
-mission.
+mission. (See also: [Apple Lays the Groundwork to Kill Online Advertising](https://techcrunch.com/2016/07/24/apple-lays-the-groundwork-to-kill-online-advertising/?ncid=rss&cps=gravity_1730_6590232193807806974))
 
 ## Show Me the Money
 
