@@ -28,31 +28,33 @@ date:   2018-05-31 20:14:00
 </svg>
 
 The human mind is able to identify objects in our vision, recognize words spoken in our hearing, understand
-multiple languages, and play games. <span id="ai-description">_Artificial intelligence_ (“AI”) is the discovery and study of methods to
+multiple languages, and play games. <span id="ai-description">**Artificial intelligence** (“AI”) is the discovery and study of methods to
 make computers mimic the functions of human minds.</span>
 
 To make computers perform useful functions, programmers typically write and test many thousands of lines of
 computer code, and frequently update that code over time. The code instructs a computer to accept inputs (like
 gestures on a touch screen or video from a camera) and generate outputs (like files, graphics on a display, or
-sounds from a speaker). <span id='ml-description'>_Machine learning_ (ML) is the part of AI that makes computers learn new functions
+sounds from a speaker). <span id='ml-description'>**Machine learning** (ML) is the part of AI that makes computers learn new functions
 without writing code for each one.</span>
 
-<span id='r-description'>In _regression,_ the computer learns to generate a _continuous-valued_ output from its
+<span id='r-description'>In **regression,** the computer learns to generate a _continuous-valued_ output from its
 input.</span> For example, given inputs like the square footage of a home, the number of bedrooms, and its
 geographic location, the computer might learn to output the price of the home.
 
-<span id='c-description'>In _classification,_ the computer learns to generate a _discrete-valued_ output from
+<span id='c-description'>In **classification,** the computer learns to generate a _discrete-valued_ output from
 its input.</span> For example, given an e-mail as input, the computer might learn to classify it as “junk” or
 “not junk.”
 
-<span id='s-description'>In _supervised learning,_ the computer is given _training examples,_ each consisting of an input
-and the expected output.</span> From these examples, the computer learns to generate the correct output, even
-for inputs it has never been given before.
+<span id='s-description'>In **supervised learning,** the computer is given
+**training examples,** each consisting of an input and the expected
+output.</span> From these examples, the computer learns to generate the correct
+output, even for inputs it has never been given before.
 
-<span id='u-description'>In _unsupervised learning,_ the computer is given example inputs only. The computer
-learns to generate output that _encodes_ the input---represents it in some useful way.</span> Typically, the
-output exposes hidden similarities between inputs, for _clustering._ It can also be used for detection of
-_anomalies,_ hidden irregularities in inputs.
+<span id='u-description'>In **unsupervised learning,** the computer is given
+example inputs only. The computer learns to generate output that _encodes_ the
+input---represents it in some useful way.</span> Typically, the output exposes
+hidden similarities between inputs, for **clustering.** It can also be used for
+detection of **anomalies,** hidden irregularities in inputs.
 
 [<img src="/images/dt130202.gif" />](http://dilbert.com/strip/2013-02-02)
 

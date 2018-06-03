@@ -42,9 +42,10 @@ In one of the simplest forms of
 computer learns a linear relationship between a single input and its
 corresponding continuous-valued output. The training examples consist of $$m$$
 input values $${ x_1, x_2, ..., x_m }$$ and their corresponding output values,
-$${ y_1, y_2, ..., y_m }$$. _Simple linear regression_ means finding a line
+$${ y_1, y_2, ..., y_m }$$. **Simple linear regression** means finding a line
 such that the _sum of the distances from each value to the line_ is minimized.
-This line is a _model_ that can then be used to generate outputs for new inputs.
+This line is a **model** that can then be used to generate outputs for new
+inputs.
 
 The equation of any line can be written as $$ y(x) = \theta_1x + \theta_2 $$
 where $$\theta_1$$ is the slope of the line and $$\theta_2$$ is its
@@ -58,9 +59,9 @@ specified by $$\theta_1$$ and $$\theta_2$$, the function we want to minimize is
 
 $$ J(\theta_1, \theta_2) = \sum_{i=1}^m{\frac{1}{2}(y(x_i) - y_i)^2} = \frac{1}{2}\sum_{i=1}^m{(\theta_1x_i + \theta_2 - y_i)^2} $$
 
-This function is called the _cost_ or _loss_ function. Its value is large when
-the line is a poor fit for the training examples, and small when the line is a
-good fit. 
+This function is called the <span id='cost-function'>**cost**</span> or **loss** function. Its value is large
+when the line is a poor fit for the training examples, and small when the line
+is a good fit.
 
 The values of $$\theta_1$$ and $$\theta_2$$ that minimize a function like the
 one above can be determined by finding the zeroes of its partial derivatives
@@ -75,8 +76,11 @@ The partial derivative with respect to $$\theta_2$$ is simply
 $$ \frac{\partial J(\theta_1, \theta_2)}{\partial \theta_2} = \sum_{i=1}^m{(\theta_1x_i + \theta_2 - y_i)} = m\theta_2 + \theta_1\sum_{m=1}^i{x_i} - \sum_{m=1}^i{y_i}$$
 
 For simple linear regression, it is possible to set these equations to zero and
-solve for $$\theta_1$$ and $$\theta_2$$. However, for other types of machine
-learning, we need to take a different approach called _gradient descent._ 
+solve for $$\theta_1$$ and $$\theta_2$$. 
+
+To learn more complex models, we can find the partial derivatives of the cost
+function, but it may not be possible to set them to zero and solve them
+directly. We need to take a different approach called _gradient descent._
 
 In the meantime, you can see what it feels like to minimize the cost function
 by hand...
