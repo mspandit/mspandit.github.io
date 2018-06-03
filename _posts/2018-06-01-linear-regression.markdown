@@ -79,8 +79,9 @@ solve for $$\theta_1$$ and $$\theta_2$$. However, for other types of machine lea
 
 # Interactive Minimization of Cost Function
 
-The table and chart below show ten examples and a line defined by $$\theta_1$$
-and $$\theta_2$$. Move the sliders to minimize the value of the cost function $$J(\theta_1, \theta_2)$$.
+The table below show ten examples. The chart shows these examples and a line
+defined by $$\theta_1$$ and $$\theta_2$$. Move the sliders to minimize the
+value of the cost function $$J(\theta_1, \theta_2)$$.
 
 <table class="table">
   <tr>
@@ -179,8 +180,8 @@ and $$\theta_2$$. Move the sliders to minimize the value of the cost function $$
     $('#theta2-out').attr('value', yIntercept);
     $('#j-out').attr('value', loss(slope, yIntercept));
     $('#line').attr("y1", scaleY(yIntercept));
-    $('#line').attr("x1", 0);
-    $('#line').attr("x2", 450);
+    $('#line').attr("x1", 30);
+    $('#line').attr("x2", 440);
     $('#line').attr('y2', scaleY(slope * 50 + yIntercept));
   }
   
