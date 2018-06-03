@@ -75,7 +75,11 @@ The partial derivative with respect to $$\theta_2$$ is simply
 $$ \frac{\partial J(\theta_1, \theta_2)}{\partial \theta_2} = \sum_{i=1}^m{(\theta_1x_i + \theta_2 - y_i)} = m\theta_2 + \theta_1\sum_{m=1}^i{x_i} - \sum_{m=1}^i{y_i}$$
 
 For simple linear regression, it is possible to set these equations to zero and
-solve for $$\theta_1$$ and $$\theta_2$$. However, for other types of machine learning, we need to take a different approach called _gradient descent._
+solve for $$\theta_1$$ and $$\theta_2$$. However, for other types of machine
+learning, we need to take a different approach called _gradient descent._ 
+
+In the meantime, you can see what it feels like to minimize the cost function
+by hand...
 
 # Interactive Minimization of Cost Function
 
@@ -195,4 +199,62 @@ value of the cost function $$J(\theta_1, \theta_2)$$.
     yIntercept = 3 * parseFloat(this.value) / 2;
     updateLine(slope, yIntercept);
   }
+</script>
+
+# Visualization of the Cost Function
+
+The three-dimensional graph below shows the values of the cost function
+$$J(\theta_1, \theta_2)$$ for different values of $$\theta_1$$ and $$\theta_2$$.
+
+You can click and drag to rotate the graph, scroll to zoom in and out, and
+hover over the data points in the graph to see each value of $$\theta_1$$,
+$$\theta_2$$, and $$J$$.
+
+<div id="visualization"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<script type="text/javascript">
+    // Create and populate a data table.
+    var data = new vis.DataSet();
+    var counter = 0;
+    var steps = 50;  // number of datapoints will be steps*steps
+    var axisMax = 314;
+    var xMin = -2.4
+    var xMax = 7.5
+    var xStep = (xMax - xMin) / steps;
+    var yMin = 0
+    var yMax = 150
+    var yStep = (yMax - yMin) / steps;
+    for (var x = xMin; x < xMax; x += xStep) {
+        for (var y = yMin; y < yMax; y += yStep) {
+            var value = loss(x, y);
+            data.add({
+              id: counter++,
+              x: x,
+              y: y,
+              z: value,
+              style: ((x == 2.5 && y == 30) ? 0 : value)
+            });
+        }
+    }
+
+    // specify options
+    var options = {
+      width:  '500px',
+      height: '552px',
+      style: 'dot-color',
+      showPerspective: true,
+      showGrid: true,
+      showShadow: false,
+      keepAspectRatio: false,
+      verticalRatio: 0.5,
+      xLabel: "theta1",
+      yLabel: "theta2",
+      zLabel: "J",
+      tooltip: true,
+      showLegend: false
+    };
+
+    // Instantiate our graph object.
+    var container = document.getElementById('visualization');
+    var graph3d = new vis.Graph3d(container, data, options);
 </script>
