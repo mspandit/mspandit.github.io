@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Machine Learning in One Page: Introduction"
+title: "Introduction"
 excerpt: "An introduction to a series of one-page posts on machine learning."
 date:   2018-05-31 20:14:00
 ---
-<svg style="width: 555px; height: 150px;">
+<svg style="width: 555px; height: 150px; cursor: pointer;">
   <style>
     .label { font: 10px sans-serif; }
   </style>
@@ -45,7 +45,7 @@ geographic location, the computer might learn to output the price of the home.
 its input.</span> For example, given an e-mail as input, the computer might learn to classify it as “junk” or
 “not junk.”
 
-<span id='s-description'>In _supervised learning,_ the computer is given examples, each consisting of an input
+<span id='s-description'>In _supervised learning,_ the computer is given _training examples,_ each consisting of an input
 and the expected output.</span> From these examples, the computer learns to generate the correct output, even
 for inputs it has never been given before.
 
@@ -57,20 +57,38 @@ _anomalies,_ hidden irregularities in inputs.
 [<img src="/images/dt130202.gif" />](http://dilbert.com/strip/2013-02-02)
 
 <script type="text/javascript">
-
+  var states = {};
   function interact(circle, description) {
+    states[circle] = 'normal';
+    $(circle).on('click', function () {
+      if (states[circle] == 'normal') {
+        states[circle] = 'highlighted';
+      } else {
+        states[circle] = 'normal';
+      }
+    })
     $(circle).on('mouseover', function () {
       $(description).attr('style', 'background-color: yellow;');
-    })
-    $(circle).on('mouseleave', function () {
-      $(description).attr('style', 'background-color: white;');
-    })
-    $(description).on('mouseover', function () {
       $(circle).attr('style', "fill:yellow;stroke:black;stroke-width:1");
-    })
+    });
+    $(circle).on('mouseleave', function () {
+      if (states[circle] == 'normal') {
+        $(description).attr('style', 'background-color: white;');
+        $(circle).attr('style', "fill:white;stroke:black;stroke-width:1");
+      }
+    });
+    $(description).on('mouseover', function () {
+      if (states[circle] == 'normal') {
+        $(description).attr('style', 'background-color: yellow;');
+        $(circle).attr('style', "fill:yellow;stroke:black;stroke-width:1");
+      }
+    });
     $(description).on('mouseleave', function () {
-      $(circle).attr('style', "fill:white;stroke:black;stroke-width:1");
-    })
+      if (states[circle] == 'normal') {
+        $(description).attr('style', 'background-color: white;');
+        $(circle).attr('style', "fill:white;stroke:black;stroke-width:1");
+      }
+    });
   }
   interact("#ai-circle", "#ai-description");
   interact('#ml-circle', '#ml-description');
