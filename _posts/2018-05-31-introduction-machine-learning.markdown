@@ -1,29 +1,31 @@
 ---
 layout: post
-title: "Introduction"
+title: "Introduction to Machine Learning"
 excerpt: "An introduction to a series of posts on machine learning."
 date:   2018-05-31 20:14:00
 ---
 <svg style="width: 555px; height: 150px; cursor: pointer;">
   <style>
     .label { font: 10px sans-serif; }
+    .circle { fill: white; stroke: black; stroke-width: 1; }
+    .highlighted { fill: yellow; }
   </style>
-  <ellipse cx="276.5" cy="75" rx="275" ry="73" style="fill:white;stroke:black;stroke-width:1" id="ai-circle"> </ellipse>
+  <ellipse cx="276.5" cy="75" rx="275" ry="73" class="circle" id="ai-circle"> </ellipse>
   <text x="260" y="15" class="label" id="ai-label"> Artificial Intelligence </text>
   
-  <ellipse cx="276.5" cy="75" rx="260" ry="58" style="fill: white; stroke: black; stroke-width: 1;" id="ml-circle"> </ellipse>
+  <ellipse cx="276.5" cy="75" rx="260" ry="58" class="circle" id="ml-circle"> </ellipse>
   <text x="260" y="30" class="label" id="ml-label"> Machine Learning </text>
   
-  <ellipse cx="276.5" cy="47" rx="110" ry="14" style="fill: white; stroke: black; stroke-width: 1;" id="s-circle"> </ellipse>
+  <ellipse cx="276.5" cy="47" rx="110" ry="14" class="circle" id="s-circle"> </ellipse>
   <text x="260" y="45" class="label" id="ml-label"> Supervised  </text>
   
-  <ellipse cx="276.5" cy="97" rx="110" ry="14" style="fill: white; stroke: black; stroke-width: 1;" id="u-circle"> </ellipse>
+  <ellipse cx="276.5" cy="97" rx="110" ry="14" class="circle" id="u-circle"> </ellipse>
   <text x="260" y="95" class="label" id="ml-label"> Unsupervised  </text>
   
-  <ellipse cx="143" cy="75" rx="95" ry="29" style="fill: white; stroke: black; stroke-width: 1;" id="r-circle"></ellipse>
+  <ellipse cx="143" cy="75" rx="95" ry="29" class="circle" id="r-circle"></ellipse>
   <text x="128" y="60" class="label" id="r-label">Regression</text>
   
-  <ellipse cx="411" cy="75" rx="95" ry="29" style="fill: white; stroke: black; stroke-width: 1;" id="c-circle"></ellipse>
+  <ellipse cx="411" cy="75" rx="95" ry="29" class="circle" id="c-circle"></ellipse>
   <text x="406" y="60" class="label" id="c-label">Classification</text>
 </svg>
 

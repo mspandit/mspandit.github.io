@@ -51,23 +51,31 @@ The equation of any line can be written as $$ y(x) = \theta_1x + \theta_2 $$
 where $$\theta_1$$ is the slope of the line and $$\theta_2$$ is its
 y-intercept. The actual distance from a point $$(x_i, y_i)$$ to a line is
 [fairly
-complex](https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Line_defi
- ned_by_an_equation). However, we can get the same result by replacing the
+complex](https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Line_defined_by_an_equation). However, we can get the same result by replacing the
 actual distance with half the square of its vertical component
-$$\frac{1}{2}(y(x_i) - y_i)^2$$. For a line
-specified by $$\theta_1$$ and $$\theta_2$$, the function we want to minimize is
+$$\frac{1}{2}(y(x_i) - y_i)^2$$. (You'll see why in a moment.) For a line
+specified by $$\theta_1$$ and $$\theta_2$$, we want to minimize the sum of half
+the squares of the vertical distance from each value to the line.
 
 $$ J(\theta_1, \theta_2) = \sum_{i=1}^m{\frac{1}{2}(y(x_i) - y_i)^2} = \frac{1}{2}\sum_{i=1}^m{(\theta_1x_i + \theta_2 - y_i)^2} $$
 
-This function is called the <span id='cost-function'>**cost**</span> or **loss** function. Its value is large
-when the line is a poor fit for the training examples, and small when the line
-is a good fit.
+In machine learning, such a function is called the <span
+id='cost-function'>**cost**</span> or **loss** function. Its value is large
+when the model is a poor fit for the training examples, and small when the
+model is a good fit.
 
 The values of $$\theta_1$$ and $$\theta_2$$ that minimize a function like the
-one above can be determined by finding the zeroes of its partial derivatives
-with respect to those variables. (We used half the square of the vertical
-distance precisely to simplify the partial derivatives.) The partial derivative
-with respect to $$\theta_1$$ is simply
+one above can be determined by [finding the zeroes of its partial derivatives](https://en.wikipedia.org/wiki/Fermat%27s_theorem_(stationary_points)#Statement)
+with respect to those variables. 
+
+(We used half the square of the vertical distance precisely to simplify the
+partial derivatives. The term "partial derivative" may sound daunting, but it
+just calculates how fast one variable is making the function change, when the
+other variable is held constant. At the point where the partial derivatives are
+zero, neither variable is making any change in the function's value. Therefore,
+the function is at its minimum.)
+
+The partial derivative with respect to $$\theta_1$$ is simply
 
 $$ \frac{\partial J(\theta_1, \theta_2)}{\partial \theta_1} = \sum_{i=1}^m({\theta_1x_i + \theta_2 - y_i})x_i$$
 
