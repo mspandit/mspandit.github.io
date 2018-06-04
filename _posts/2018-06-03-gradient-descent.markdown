@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Gradient Descent in One Page"
+title: "Gradient Descent"
 excerpt: ""
 date:   2018-06-03 07:43:00
 ---
@@ -198,8 +198,8 @@ $$\frac{\partial f(x)}{\partial x} = 2x$$ and then adjust our guess by the
 product of the gradient and the learning rate. We repeat adjustments until the
 gradient becomes very close to zero. 
 
-The black line represents the different values of $$x$$ that are generated for
-the learning rate.
+The black line shows the value of the function for different values of $$x$$
+that are generated during gradient descent.
 
 Move the slider to adjust the learning rate and see how long the model takes to
 converge---if it converges at all.
@@ -221,7 +221,7 @@ converge---if it converges at all.
     <td><input type="text" disabled="true" id="learning-rate-output" style="width: 100px;"/></td>
     <td>
       <div class="slidecontainer" style="width: 300px;">
-        <input type="range" min="-40" max="10" value="-40" class="slider" id="learning-rate">
+        <input type="range" min="1" max="100" value="1" class="slider" id="learning-rate">
       </div>
     </td>
   </tr>
@@ -280,10 +280,10 @@ converge---if it converges at all.
   }
   $('#curve').attr("points", points);
   
-  updatePath(10 ** (parseFloat($('#learning-rate').attr('value')) / 10));
+  updatePath((parseFloat($('#learning-rate').attr('value')) / 100));
   
   document.getElementById("learning-rate").oninput = function () {
-    learningRate = 10 ** (parseFloat(this.value) / 10);
+    learningRate = (parseFloat(this.value) / 100);
     updatePath(learningRate)
   }
   

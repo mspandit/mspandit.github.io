@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Simple Linear Regression in One Page"
-excerpt: "Simple linear regression is one of the simplest forms of supervised machine learnig."
+title: "Simple Linear Regression"
+excerpt: "Simple linear regression is one of the simplest forms of supervised machine learning."
 date:   2018-06-01 18:02:00
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction"
-excerpt: "An introduction to a series of one-page posts on machine learning."
+excerpt: "An introduction to a series of posts on machine learning."
 date:   2018-05-31 20:14:00
 ---
 <svg style="width: 555px; height: 150px; cursor: pointer;">
