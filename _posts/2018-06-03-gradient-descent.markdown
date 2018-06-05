@@ -72,7 +72,7 @@ If you tried to minimize the linear regression cost function
 [interactively](/2018/06/01/linear-regression#interactive-minimization-of-cost-function), 
 you already have a good sense for gradient descent. You may have moved the
 sliders rapidly until the line came close to the data set. During this time,
-the cost function decreased rapidly. Then, could make fine adjustments,
+the cost function decreased rapidly. Then, you could make fine adjustments,
 paying close attention to the value of $$J(\theta_1, \theta_2)$$.
   
 # Gradient Descent in Python
@@ -80,111 +80,13 @@ paying close attention to the value of $$J(\theta_1, \theta_2)$$.
 Below is a Python program that calculates $$\theta_1$$ and $$\theta_2$$ from
 the data set used in the interactive linear regression:
 
-```
-import random
-
-def loss(theta1, theta2, examples):
-    """Cost or loss function"""
-    return 0.5 * sum([(theta1 * ex["x"] + theta2 - ex["y"]) ** 2 for ex in examples])
-
-def d_loss_d_theta1(theta1, theta2, examples):
-    """Partial derivative function of loss w.r.t. theta1"""
-    return sum([(theta1 * ex["x"] + theta2 - ex["y"]) * ex["x"] for ex in examples])
-
-def d_loss_d_theta2(theta1, theta2, examples):
-    """Partial derivative function of loss w.r.t. theta2."""
-    return len(training_examples) * theta2 + theta1 * sum([ex["x"] for ex in examples]) - sum([ex["y"] for ex in examples])
-
-if __name__ == "__main__":
-    theta1 = random.random() * 100
-    theta2 = random.random() * 100
-
-    training_examples = [
-        { "x": 6, "y": 47},
-        { "x": 8, "y": 50},
-        { "x": 15, "y": 66},
-        { "x": 16, "y": 71},
-        { "x": 22, "y": 84},
-        { "x": 25, "y": 95},
-        { "x": 30, "y": 105},
-        { "x": 31, "y": 106},
-        { "x": 32, "y": 110},
-        { "x": 38, "y": 127}
-    ]
-
-    currentLoss = loss(theta1, theta2, training_examples)
-
-    learning_rate = 0.0003
-
-    adjustment1 = 10
-    adjustment2 = 10
-    iter_count = 0
-    
-    while adjustment1 > 1e-7 or adjustment2 > 1e-7:
-        adjustment1 = learning_rate * d_loss_d_theta1(theta1, theta2, training_examples)
-        adjustment2 = learning_rate * d_loss_d_theta2(theta1, theta2, training_examples)
-        theta1 -= adjustment1
-        theta2 -= adjustment2
-        currentLoss = loss(theta1, theta2, training_examples)
-        iter_count += 1
-
-    print("theta1 = %0.2f, theta2 = %0.2f in %d iterations" % (theta1, theta2, iter_count))
-```
+<script src="https://gist.github.com/mspandit/7296e379cbea13e02bc4e710a3e2a3f6.js"></script>
 
 # Gradient Descent in Julia
 
 Below is the same program written in the [Julia](http://julialang.org) language:
 
-```
-function loss(theta1, theta2, examples)
-    # Cost or loss function
-    0.5 * sum([(theta1 * ex["x"] + theta2 - ex["y"]) ^ 2 for ex in examples])
-end
-
-function d_loss_d_theta1(theta1, theta2, examples)
-    # Partial derivative function of loss w.r.t. theta1
-    sum([(theta1 * ex["x"] + theta2 - ex["y"]) * ex["x"] for ex in examples])
-end
-
-function d_loss_d_theta2(theta1, theta2, examples)
-    # Partial derivative function of loss w.r.t. theta2.
-    length(training_examples) * theta2 + theta1 * sum([ex["x"] for ex in examples]) - sum([ex["y"] for ex in examples])
-end
-
-theta1 = rand(0:100)
-theta2 = rand(0:100)
-
-training_examples = [
-    Dict("x" => 6,  "y" => 47),
-    Dict("x" => 8,  "y" => 50),
-    Dict("x" => 15, "y" => 66),
-    Dict("x" => 16, "y" => 71),
-    Dict("x" => 22, "y" => 84),
-    Dict("x" => 25, "y" => 95),
-    Dict("x" => 30, "y" => 105),
-    Dict("x" => 31, "y" => 106),
-    Dict("x" => 32, "y" => 110),
-    Dict("x" => 38, "y" => 127)
-]
-
-currentLoss = loss(theta1, theta2, training_examples)
-
-learning_rate = 0.0003
-
-adjustment1 = 10
-adjustment2 = 10
-iterCount = 0
-
-while abs(adjustment1) > 1e-7 || abs(adjustment2) > 1e-7
-    adjustment1 = learning_rate * d_loss_d_theta1(theta1, theta2, training_examples)
-    adjustment2 = learning_rate * d_loss_d_theta2(theta1, theta2, training_examples)
-    theta1 -= adjustment1
-    theta2 -= adjustment2
-    iterCount += 1
-end
-
-println("theta1 = $(theta1), theta2 = $(theta2) in $(iterCount) iterations")
-```
+<script src="https://gist.github.com/mspandit/00a989341da3f09e4688e2b967306930.js"></script>
 
 # Learning Rate Caution
 
