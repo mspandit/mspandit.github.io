@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What Would Google Bot?"
-excerpt: "Predictions about Google's chatbot and the business model that might support it."
+summary: "Predictions about Google's chatbot and the business model that might support it."
 date:   2016-07-25 09:06:00
 ---
 

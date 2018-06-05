@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Survey of Bot APIs"
-excerpt: "A survey of Bot APIs and potential business models around them."
+summary: "A survey of Bot APIs and potential business models around them."
 date:   2016-07-23 13:14:00
 ---
 

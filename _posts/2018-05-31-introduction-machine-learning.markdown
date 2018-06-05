@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction to Machine Learning"
-excerpt: "An introduction to a series of posts on machine learning."
+summary: "An introduction to a series of posts on machine learning."
 date:   2018-05-31 20:14:00
 ---
 <svg style="width: 555px; height: 150px; cursor: pointer;">
@@ -53,10 +53,12 @@ output.</span> From these examples, the computer learns to generate the correct
 output, even for inputs it has never been given before.
 
 <span id='u-description'>In **unsupervised learning,** the computer is given
-example inputs only. The computer learns to generate output that _encodes_ the
-input---represents it in some useful way.</span> Typically, the output exposes
-hidden similarities between inputs, for **clustering.** It can also be used for
-detection of **anomalies,** hidden irregularities in inputs.
+example inputs, but no outputs. The computer learns to _encode_ the
+input---represent it in some useful way.</span> For example the output might be
+a compressed representation from which the input can be recovered. It might
+expose hidden similarities between inputs, allowing them to be **clustered**
+near each other. The output can also be used for detection of **anomalies,**
+hidden irregularities in inputs.
 
 [<img src="/images/dt130202.gif" />](http://dilbert.com/strip/2013-02-02)
 

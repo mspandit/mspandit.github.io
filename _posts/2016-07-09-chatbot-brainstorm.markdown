@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Brainstorming a Chatbot Business Model"
-excerpt: "Chatbot value proposition, business model, and opportunity for competitive advantage."
+summary: "Chatbot value proposition, business model, and opportunity for competitive advantage."
 date:   2016-07-09 11:38:00
 ---
 

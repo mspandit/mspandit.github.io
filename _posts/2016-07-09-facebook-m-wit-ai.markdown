@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Facebook M and Wit.ai"
-excerpt: "Business considerations of Facebook M, its acquisition of Wit.ai and some of Wit.ai's competitors."
+summary: "Business considerations of Facebook M, its acquisition of Wit.ai and some of Wit.ai's competitors."
 date:   2016-07-09 17:48:00
 ---
 

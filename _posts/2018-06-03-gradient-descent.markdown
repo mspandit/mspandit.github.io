@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gradient Descent"
-excerpt: "A standard, iterative method for minimizing the cost function."
+summary: "A standard, iterative method for minimizing the cost function."
 date:   2018-06-03 07:43:00
 ---
 <style type="text/css" media="screen">
@@ -39,7 +39,7 @@ date:   2018-06-03 07:43:00
 For [simple linear regression](/2018/06/01/linear-regression), it is possible
 to minimize the [cost function](/2018/06/01/linear-regression#cost-function) by
 setting its partial derivative equations to zero and then solving for the
-variables $$\theta_1$$ and $$\theta_2$$.
+variables $$\theta_0$$ and $$\theta_1$$.
 
 In modern machine learning, the computer learns vastly more complex, non-linear
 models. (You'll encounter them later.) These models typically describe the
@@ -73,11 +73,11 @@ If you tried to minimize the linear regression cost function
 you already have a good sense for gradient descent. You may have moved the
 sliders rapidly until the line came close to the data set. During this time,
 the cost function decreased rapidly. Then, you could make fine adjustments,
-paying close attention to the value of $$J(\theta_1, \theta_2)$$.
+paying close attention to the value of $$J(\theta_0, \theta_1)$$.
   
 # Gradient Descent in Python
 
-Below is a Python program that calculates $$\theta_1$$ and $$\theta_2$$ from
+Below is a Python program that calculates $$\theta_0$$ and $$\theta_1$$ from
 the data set used in the interactive linear regression:
 
 <script src="https://gist.github.com/mspandit/7296e379cbea13e02bc4e710a3e2a3f6.js"></script>
