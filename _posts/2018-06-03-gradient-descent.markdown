@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gradient Descent"
-excerpt: ""
+excerpt: "A standard, iterative method for minimizing the cost function."
 date:   2018-06-03 07:43:00
 ---
 <style type="text/css" media="screen">
@@ -45,8 +45,8 @@ In modern machine learning, the computer learns vastly more complex, non-linear
 models. (You'll encounter them later.) These models typically describe the
 relationships between _millions_ of inputs and _thousands_ of outputs. To learn
 such models, we can still define a cost function and find its partial
-derivative equations, but setting them to zero and then solving for the
-variables may not be possible.
+derivative equations. Setting them to zero and solving for the variables may be
+impossible or excessively time-consuming.
 
 The alternative method to minimize the cost function is **gradient descent:** 
 
@@ -70,9 +70,9 @@ for the training set.
 
 If you tried to minimize the linear regression cost function
 [interactively](/2018/06/01/linear-regression#interactive-minimization-of-cost-function), 
-you already have a good sense for gradient descent. You probably moved the
+you already have a good sense for gradient descent. You may have moved the
 sliders rapidly until the line came close to the data set. During this time,
-the cost function decreased rapidly. Then, you probably made fine adjustments,
+the cost function decreased rapidly. Then, could make fine adjustments,
 paying close attention to the value of $$J(\theta_1, \theta_2)$$.
   
 # Gradient Descent in Python
