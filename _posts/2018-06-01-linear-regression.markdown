@@ -37,43 +37,51 @@ date:   2018-06-01 18:02:00
   }
 </style>
 
+<style type="text/css" media="print">
+  
+  @media print {
+    a[href]:after {
+      content: none;
+    }
+  }
+  
+</style>
+
 In one of the simplest forms of
 [supervised](/2018/05/31/introduction-machine-learning) machine learning, the
 computer learns a linear relationship between a single input and its
 corresponding continuous-valued output. The training examples consist of $$m$$
 input values $${ x_1, x_2, ..., x_m }$$ and their corresponding output values,
-$${ y_1, y_2, ..., y_m }$$. **Simple linear regression** means finding a line
-such that the _sum of the distances from each value to the line_ is minimized.
-This line is a **model** that can then be used to generate outputs for new
-inputs.
+$${ y_1, y_2, ..., y_m }$$. [**Simple linear
+regression**](https://en.wikipedia.org/wiki/Simple_linear_regression) means
+finding the line that "best fits" the training examples---such that the _sum of
+the distances from each example to the line is minimized._ This line is a
+**model** that can then be used to generate outputs for new inputs.
 
-The equation of any line can be written as $$ y(x) = \theta_1x + \theta_2 $$
-where $$\theta_1$$ is the slope of the line and $$\theta_2$$ is its
-y-intercept. The actual distance from a point $$(x_i, y_i)$$ to a line is
-[fairly
-complex](https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Line_defined_by_an_equation). However, we can get the same result by replacing the
-actual distance with half the square of its vertical component
-$$\frac{1}{2}(y(x_i) - y_i)^2$$. (You'll see why in a moment.) For a line
-specified by $$\theta_1$$ and $$\theta_2$$, we want to minimize the sum of half
-the squares of the vertical distance from each value to the line.
+The [equation of any line](https://en.wikipedia.org/wiki/Linear_equation) can
+be written as $$ y(x) = \theta_1x + \theta_2 $$ where $$\theta_1$$ is the slope
+of the line and $$\theta_2$$ is its y-intercept. The actual distance from a
+point $$(x_i, y_i)$$ to a line is [fairly
+complex](https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Line_defined_by_an_equation). 
+Fortunately, we can minimize this distance by minimizing _half the square of
+its vertical component_ $$\frac{1}{2}(y(x_i) - y_i)^2$$. (You'll see why in a
+moment.) For a line specified by $$\theta_1$$ and $$\theta_2$$, we want to
+minimize:
 
 $$ J(\theta_1, \theta_2) = \sum_{i=1}^m{\frac{1}{2}(y(x_i) - y_i)^2} = \frac{1}{2}\sum_{i=1}^m{(\theta_1x_i + \theta_2 - y_i)^2} $$
 
-In machine learning, such a function is called the <span
-id='cost-function'>**cost**</span> or **loss** function. Its value is large
-when the model is a poor fit for the training examples, and small when the
-model is a good fit.
-
-The values of $$\theta_1$$ and $$\theta_2$$ that minimize a function like the
-one above can be determined by [finding the zeroes of its partial derivatives](https://en.wikipedia.org/wiki/Fermat%27s_theorem_(stationary_points)#Statement)
-with respect to those variables. 
+Such a function is called the <span id='cost-function'>**cost**</span> or
+**loss** function. Its value is minimized for the best-fit model.
+How do we find $$\theta_1$$ and $$\theta_2$$ that minimize this function? By [finding the zeroes of its partial
+derivatives](https://en.wikipedia.org/wiki/Fermat%27s_theorem_(stationary_points)#Statement) 
+with respect to those variables.
 
 (We used half the square of the vertical distance precisely to simplify the
-partial derivatives. The term "partial derivative" may sound daunting, but it
-just calculates how fast one variable is making the function change, when the
-other variable is held constant. At the point where the partial derivatives are
-zero, neither variable is making any change in the function's value. Therefore,
-the function is at its minimum.)
+partial derivative equations. The term "partial derivative" may sound daunting,
+but it just calculates how rapidly one variable makes the function change, when
+the other variable is held constant. At the point where both partial
+derivatives are zero, neither variable is making any change in the function's
+value. This tells us the function is at its minimum.)
 
 The partial derivative with respect to $$\theta_1$$ is simply
 
@@ -84,11 +92,8 @@ The partial derivative with respect to $$\theta_2$$ is simply
 $$ \frac{\partial J(\theta_1, \theta_2)}{\partial \theta_2} = \sum_{i=1}^m{(\theta_1x_i + \theta_2 - y_i)} = m\theta_2 + \theta_1\sum_{m=1}^i{x_i} - \sum_{m=1}^i{y_i}$$
 
 For simple linear regression, it is possible to set these equations to zero and
-solve for $$\theta_1$$ and $$\theta_2$$. 
-
-To learn more complex models, we can find the partial derivatives of the cost
-function, but it may not be possible to set them to zero and solve them
-directly. We need to take a different approach called _gradient descent._
+solve for $$\theta_1$$ and $$\theta_2$$. To learn more complex models, we must
+take a different approach called [_gradient descent_](/2018/06/03/gradient-descent).
 
 In the meantime, you can see what it feels like to minimize the cost function
 by hand...
@@ -124,17 +129,17 @@ value of the cost function $$J(\theta_1, \theta_2)$$.
           </td>
         </tr>
         <tr>
-          <td>$$\theta_1$$</td>
-          <td><input type="text" id="theta1-out" style="width: 50px;" disabled="true" /></td>
-          <td colspan="6">
+          <td style="text-align: right; height: 30px;">\(\theta_1 = \)&nbsp;</td>
+          <td id='theta1-out'></td>
+          <td colspan="6" style="">
             <div class="slidecontainer">
               <input type="range" min="1" max="100" value="50" class="slider" id="theta1">
             </div>
           </td>
         </tr>
         <tr>
-          <td>$$\theta_2$$</td>
-          <td><input type="text" id="theta2-out" style="width: 50px;" disabled="true" /></td>
+          <td style="text-align: right; height: 30px">\(\theta_2 = \)&nbsp;</td>
+          <td id='theta2-out'></td>
           <td colspan="6">
             <div class="slidecontainer">
               <input type="range" min="1" max="100" value="50" class="slider" id="theta2">
@@ -142,8 +147,9 @@ value of the cost function $$J(\theta_1, \theta_2)$$.
           </td>
         </tr>
         <tr>
-          <td>$$J(\theta_1, \theta_2)$$</td>
-          <td><input type="text" id="j-out" style="width: 50px;" disabled="true"></td>
+          <td style="text-align: right; height: 30px;">\(J(\theta_1, \theta_2) = \)&nbsp;</td>
+          <td id='j-out' style="width: 100px;"></td>
+          <td colspan="6"></td>
         </tr>
       </table>
     </td>
@@ -192,9 +198,9 @@ value of the cost function $$J(\theta_1, \theta_2)$$.
   }
 
   function updateLine(slope, yIntercept) {
-    $('#theta1-out').attr('value', slope);
-    $('#theta2-out').attr('value', yIntercept);
-    $('#j-out').attr('value', loss(slope, yIntercept));
+    $('#theta1-out').html(slope);
+    $('#theta2-out').html(yIntercept);
+    $('#j-out').html((loss(slope, yIntercept) + "").slice(0, 7));
     $('#line').attr("y1", scaleY(yIntercept));
     $('#line').attr("x1", 30);
     $('#line').attr("x2", 440);

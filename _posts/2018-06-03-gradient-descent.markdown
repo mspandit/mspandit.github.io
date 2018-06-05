@@ -68,11 +68,12 @@ to it). When this happens, we loosely say that "the model has converged." This
 really means we have arrived at a set of values that minimize the cost function
 for the training set.
 
-If you tried to minimize the cost function
-[interactively](/2018/06/01/linear-regression#interactive-minimization-of-cost-function), you already have a good sense for gradient descent. You probably
-moved the sliders rapidly until the line came close to the data set. During
-this time, the cost function decreased rapidly. Then, you probably made fine
-adjustments, paying close attention to the value of $$J(\theta_1, \theta_2)$$.
+If you tried to minimize the linear regression cost function
+[interactively](/2018/06/01/linear-regression#interactive-minimization-of-cost-function), 
+you already have a good sense for gradient descent. You probably moved the
+sliders rapidly until the line came close to the data set. During this time,
+the cost function decreased rapidly. Then, you probably made fine adjustments,
+paying close attention to the value of $$J(\theta_1, \theta_2)$$.
   
 # Gradient Descent in Python
 
