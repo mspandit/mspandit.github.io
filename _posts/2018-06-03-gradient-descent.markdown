@@ -60,7 +60,7 @@ of the tangent) of the cost function based on the change in one variable.
 corresponding gradient._ (Of course, if the gradient is zero, then the variable
 is already "doing its part" to minimize the cost function, and we need not
 change its value.) The [constant of
-proportionality](https://en.wikipedia.org/wiki/Proportionality_(mathematics))
+proportionality <i class="fa fa-external-link-alt"></i>](https://en.wikipedia.org/wiki/Proportionality_(mathematics))
 is called the **learning rate**.
 
 4. We repeat steps 2. and 3. until _all_ the gradients are zero (or very close
