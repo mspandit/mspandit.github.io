@@ -10,7 +10,7 @@ learns a linear relationship between a single input $$ x $$ and a single output
 $$ y $$ by calculating two values $$\theta_0$$ and $$\theta_1$$. These values
 define a line that best fits the training examples.
 
-**Multivariate linear regression** is an extension that finds a relationship
+<span id="multivariate-linear-regression">**Multivariate linear regression**</span> is an extension that finds a relationship
 between _multiple_ inputs $$ x_1, x_2, \dots, x_n $$ and an output. The
 computer calculates $$n + 1$$ values $$\theta_0, \theta_1, ..., \theta_n$$.
 These values define a plane (if $$ n = 2 $$) or _hyperplane_ (if $$ n > 2 $$)
