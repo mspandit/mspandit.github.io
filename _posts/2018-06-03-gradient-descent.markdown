@@ -38,7 +38,7 @@ really means we have arrived at a set of values that minimize the cost function
 for the training set.
 
 If you tried to minimize the linear regression cost function
-[interactively](/2018/06/01/nteractive-minimization), 
+[interactively](/2018/06/01/interactive-minimization), 
 you already have a good sense for gradient descent. You may have moved the
 sliders rapidly until the line came close to the data set. During this time,
 the cost function decreased rapidly. Then, you could make fine adjustments,

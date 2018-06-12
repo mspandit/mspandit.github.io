@@ -19,8 +19,8 @@ hover over the data points in the graph to see each value of $$\theta_0$$,
 $$\theta_1$$, and $$J$$.
 
 As you can see, for a logistic model, this cost function generates a surface
-with numerous flat "steps" regions. The process of [gradient
-descent](/2018/06/03/gradient-descent) can easily get "stuck" on these steps.
+with large flat regions. The process of [gradient
+descent](/2018/06/03/gradient-descent) can easily get "stuck" in these regions.
 If you try to minimize this cost function for a logistic model, you'll be lucky
 if it converges at all, much less in a reasonable number of iterations.
 
@@ -53,11 +53,11 @@ if it converges at all, much less in a reasonable number of iterations.
     var counter = 0;
     var steps = 50;  // number of datapoints will be steps*steps
     var axisMax = 314;
-    var xMin = -4.0
+    var xMin = -0.5
     var xMax = 0.5
     var xStep = (xMax - xMin) / steps;
-    var yMin = -10.0
-    var yMax = 100.0
+    var yMin = -25.0
+    var yMax = 25.0
     var yStep = (yMax - yMin) / steps;
     for (var x = xMin; x < xMax; x += xStep) {
         for (var y = yMin; y < yMax; y += yStep) {

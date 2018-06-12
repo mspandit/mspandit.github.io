@@ -27,7 +27,7 @@ fa-external-link-alt"></i>](https://en.wikipedia.org/wiki/Logistic_function)
 has this property: no matter how large or small its input is, the output
 remains between 0 and 1.
 
-$$ y = \frac{1}{1 + e^{\vec{\theta}\times\vec{x}}} $$
+$$ y = \frac{1}{1 + e^{\vec{\theta^T}\times\vec{x}}} $$
 
 Mathematically speaking, this [composes <i class="fa
 fa-external-link-alt"></i>](https://en.wikipedia.org/wiki/Function_composition)
