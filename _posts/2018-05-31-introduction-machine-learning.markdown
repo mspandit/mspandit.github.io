@@ -7,7 +7,7 @@ date:   2018-05-31 20:14:00
 <svg style="width: 555px; height: 150px; cursor: pointer;">
   <style>
     .label { font: 10px sans-serif; }
-    .circle { fill: white; stroke: black; stroke-width: 1; }
+    .circle { fill: white; stroke: black; stroke-width: 1; opacity: 0.5;}
     .highlighted { fill: yellow; }
   </style>
   <ellipse cx="276.5" cy="75" rx="275" ry="73" class="circle" id="ai-circle"> </ellipse>

@@ -66,13 +66,6 @@ take a different approach called [_gradient descent_](/2018/06/03/gradient-desce
 # Summary
 
 Click the arrows to see different ways of expressing the same thing:
-
-<style type="text/css" media="screen">
-  .frame {
-    padding: 5px;
-    text-align: center;
-  }
-</style>
 <table class="table">
   <tr>
     <td style="width: 10%; text-align: center;">
@@ -99,32 +92,9 @@ Click the arrows to see different ways of expressing the same thing:
     </td>
   </tr>
 </table>
-
+<script src="/js/mathpres.js"></script>
 <script type="text/javascript">
-  function mathPres() {
-    self = this;
-    $(".frame").hide();
-    $("#frame-0").show();
-    self.numframes = $(".frame").length;
-    self.frame = 0
-    $("#right").on('click', function () {
-      $("#frame-" + self.frame).hide();
-      self.frame = (self.frame + 1) % self.numframes;
-      $("#frame-" + self.frame).fadeIn();
-    });
-    $("#left").on('click', function () {
-      $("#frame-" + self.frame).hide();
-      if (0 == self.frame) {
-        self.frame = self.numframes - 1;
-      } else {
-        self.frame = (self.frame - 1) % self.numframes;
-      }
-      $("#frame-" + self.frame).fadeIn();
-    });
-  }
-
   $(function () {
-    console.log("ready");
     mp = new mathPres();
   });
 </script>
