@@ -2,7 +2,7 @@
 layout: post
 title: "Visualization of Cost Function for Logistic Regression"
 summary: "There is a problem with using gradient descent to minimize the cost function."
-date:   2018-06-07 21:46:00
+date:   2018-06-08 21:46:00
 ---
 Suppose, as in [linear regression](/2018/06/01/linear-regression), we try to
 minimize the sum of half the square of the vertical distance between each
