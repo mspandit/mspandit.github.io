@@ -17,8 +17,8 @@ for example,
 You might be tempted to handle such problems using a model whose output is an
 integer identifying the class. However, a more straightforward approach is to
 have a logistic model _for each class_ whose output indicates the probability
-that the input is in that class. The model that produces the highest
-probability for an input corresponds to the predicted class.
+that the input is in that class. For a given input, the model that produces the
+highest probability corresponds to the predicted class.
 
 It is a simple matter to divide each output by the sum of the outputs. This
 ensures that the sum of the probabilities is 1.0. This combination of outputs
@@ -32,7 +32,6 @@ elsewhere (conventionally called a **[one-hot <i class="fa
 fa-external-link-alt"></i>](https://en.wikipedia.org/wiki/One-hot) vector**).
 
 We can use matrices to keep track of the multiple models. 
-
 Let \\( \vec{\theta} = \\) \` [[\theta_0^{(1)}, \theta_0^{(2)}, ...], [\theta_1^{(1)}, \theta_1^{(2)}, ...]]\` with a column for each class. Then the model equation can be compactly expressed as before:
 
 $$ \vec{y}(\vec{x}) = \frac{1}{\vec{1} + e^{\vec{\theta^T}\times\vec{x}}} $$
