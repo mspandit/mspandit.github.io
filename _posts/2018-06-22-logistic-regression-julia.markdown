@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Multiclass Logistic Regression in Python"
-summary: "A Python program that finds polynomial logistic models for three classes. Interactive visualization of the results."
-date:   2018-06-15 05:58:00
+title: "Multiclass Logistic Regression in Julia"
+summary: "A Julia program that finds polynomial logistic models for three classes. Interactive visualization of the results."
+date:   2018-06-22 08:50:00
 ---
 
 
@@ -26,14 +26,11 @@ class has two inputs $$x_1$$ and $$x_2$$ that range between 0 and 100.
   </tr>
 </table>
 
-The Python program below finds polynomial logistic models for the
+The Julia program below finds polynomial logistic models for the
 classes. It uses gradient descent to find $$\theta_0^{(i)}, \theta_1^{(i)}, ...
 \theta_4^{(i)}$$ for $$i = {1, 2, 3}$$.
 
-Don't forget to use `pip install numpy` to install the `numpy` library before
-running this.
-
-<script src="https://gist.github.com/mspandit/b98e67057aed89e16ba6e472b28e73fc.js"></script>
+<script src="https://gist.github.com/mspandit/201cc5c7a8bcbd1e876482aa60d082bc.js"></script>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
@@ -87,7 +84,7 @@ running this.
 
 </script>
 
-The above program should run in a few minutes and then print out $$\theta$$
+The above program should run in under a minute and then print out $$\theta$$
 values. For each of the classes, try entering its $$\theta$$ values below.
 When you've entered all the values, you will see what the model function for
 that class looks like.
