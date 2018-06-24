@@ -89,7 +89,7 @@ values. For each of the classes, try entering its $$\theta$$ values below.
 When you've entered all the values, you will see what the model function for
 that class looks like.
 
-<table class="table">
+<table class="table" id="entry-table">
   <tr>
     <td>       $$\theta_0$$</td>
     <td><input class="theta" type="text"></td>
@@ -116,36 +116,6 @@ that class looks like.
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 <script type="text/javascript"> 
   function hypothesis(x1, x2, theta) {
-    // theta0 = -0.0339824
-    // theta1 = -0.46006946
-    // theta2 = -0.60103255
-    // theta3 = 0.00861311
-    // theta4 = 0.01318356
-    // theta0 = 0.03945381
-    // theta1 = 0.68190881
-    // theta2 = -0.06012416
-    // theta3 = -0.01624137
-    // theta4 = 0.0024493
-    // theta0 = 0.08484925
-    // theta1 = -0.01588343
-    // theta2 = 1.08799297
-    // theta3 = 0.00785224
-    // theta4 = -0.02224609
-    // theta0 = 6.58133611
-    // theta1 = 42.51570137
-    // theta2 = 81.94398186
-    // theta3 = 40.84385334
-    // theta4 = 11.41999937
-    // theta0 = -7.58512432
-    // theta1 = -74.18983596
-    // theta2 = 23.66184066
-    // theta3 = 3.86704683
-    // theta4 = 22.54634334
-    // theta0 = 6.58
-    // theta1 = 42.52
-    // theta2 = 81.94
-    // theta3 = 40.84
-    // theta4 = 11.42
     x1 = (x1 - 50.0) / 50.0
     x2 = (x2 - 50.0) / 50.0
     return 1.0 / (1 + Math.E ** (theta[0] + theta[1] * x1 + theta[2] * x2 + theta[3] * x1 * x1 + theta[4] * x2 * x2));
@@ -192,7 +162,7 @@ that class looks like.
     verticalRatio: 0.5,
     xLabel: "theta1",
     yLabel: "theta0",
-    zLabel: "J",
+    zLabel: "Model",
     tooltip: true,
     showLegend: false
   };
