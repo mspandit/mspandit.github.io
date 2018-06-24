@@ -5,7 +5,6 @@ summary: "A Python program that finds polynomial logistic models for three class
 date:   2018-06-15 05:58:00
 ---
 
-
 The chart below show 30 examples in three classes---red, green, and blue. Each
 class has two inputs $$x_1$$ and $$x_2$$ that range between 0 and 100.
 
@@ -27,8 +26,8 @@ class has two inputs $$x_1$$ and $$x_2$$ that range between 0 and 100.
 </table>
 
 The Python program below finds polynomial logistic models for the
-classes. It uses gradient descent to find $$\theta_0^{(i)}, \theta_1^{(i)}, ...
-\theta_4^{(i)}$$ for $$i = {1, 2, 3}$$.
+classes. It uses gradient descent to find coefficients $$\theta_0^{(i)}, \theta_1^{(i)}, ...
+\theta_4^{(i)}$$ for $$x_1$$, $$x_2$$, $$x_1^2$$ and $$x_2^2$$ ($$i = {1, 2, 3}$$.)
 
 Don't forget to use `pip install numpy` to install the `numpy` library before
 running this.

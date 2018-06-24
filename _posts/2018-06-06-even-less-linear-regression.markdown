@@ -16,7 +16,7 @@ input value to various powers. For example:
 
 $$ y(x) = \theta_0 + \theta_1x + \theta_2x^2 + \theta_3x^3 + \dots $$
 
-The computer calculates values $$\theta_0, \theta_1, ...,$$. These values
+The computer calculates values $$\theta_0, \theta_1, ...,$$. These coefficients
 define a curve that best fits the training examples.
 
 In the multiple-dimensional input case, the model equation looks the same.
