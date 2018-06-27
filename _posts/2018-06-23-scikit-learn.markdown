@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Scikit-learn for Logistic Regression"
-summary: "Scikit-learn is a popular library with a fast, efficient implementation of logistic regression."
+summary: "Scikit-learn is a popular open-source library with a fast, efficient implementation of logistic regression."
 date:   2018-06-23 18:00:00
 ---
 
@@ -9,6 +9,10 @@ It is instructive to study implementations of simple logistic regression using
 gradient descent, but the open source community has produced fast, efficient
 implementations with flexible options for regularization.
 [Scikit-learn](http://scikit-learn.org/stable/index.html) is one of these.
+
+The programs below vividly illustrate that the use of easily-available
+libraries can dramatically speed the execution of machine learning, and
+dramatically reduce the number of lines of code you have to write and maintain.
 
 # Logistic Regression with Scikit-learn in Python
 

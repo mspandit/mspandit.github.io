@@ -20,18 +20,19 @@ The computer calculates values $$\theta_0, \theta_1, ...,$$. These coefficients
 define a curve that best fits the training examples.
 
 In the multiple-dimensional input case, the model equation looks the same.
-However, $$ \vec{x} $$ includes inputs raised to various powers as well as
-actual inputs.
+However, $$ \vec{x} $$ includes products of inputs and inputs raised to various
+powers as well as actual inputs.
 
 $$ y(\vec{x}) = \vec{\theta}^T \times \vec{x} $$
 
 In this case, we refer to $$ \vec{x} $$ as a **feature vector** because it
 consists of actual inputs as well as "features" of the inputs.
 
-You may be wondering: Which inputs are raised to which powers? This is a
-matter of discretion and experimentation. If you know that the output depends
-on an input raised to a power, you should use it. However, the more features
-you include, the more iterations your model will require to converge.
+You may be wondering: Which inputs are multiplied together? Which are raised to
+which powers? This is a matter of discretion and experimentation. If you know
+that the output depends on the product of two inputs or on an input raised to a
+power, you should use that feature. However, the more features you include, the
+more iterations your model will require to converge.
 
 The cost function and its partial derivatives are similar to those for
 [multivariate linear regression](/2018/06/04/not-completely-linear-regression):
@@ -46,12 +47,13 @@ the best-fit surface.
 # Overfitting
 
 You can start with a linear model and gradually add features to $$ \vec{x} $$
-and dimensions to $$ \vec{\theta} $$ until you get the desired fit.
+and dimensions to $$ \vec{\theta} $$ until you get a sufficiently complex model to fit the training exaples.
 
 If you include a large number of features, you are likely to encounter the
 problem of **overfitting**. The model fits the training data well, but gives
-poor or incorrect outputs when fed inputs outside the training data. For this
-reason, when given a data set, it is best not to use the entire set for
-training. Instead, reserve a portion of it (called the **test data**) for
+poor or incorrect outputs when fed inputs outside the training data. This problem is common in machine learning.
+
+For this reason, when given a data set, it is best not to use the entire set
+for training. Instead, reserve a portion of it (called the <span id="testing-set">**testing set**</span>) for
 testing the model after it has been trained. Later, we will look at a couple of
 methods for preventing overfitting.

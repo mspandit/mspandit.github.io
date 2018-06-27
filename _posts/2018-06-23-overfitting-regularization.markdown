@@ -11,21 +11,16 @@ way of finding a curve that best fits the training examples. We combined it
 with logistic regression, in the [Python](/2018/06/14/logistic-regression-python) and [Julia](/2018/06/22/logistic-regression-julia) programs, to create a curved
 boundary between examples in the class and those outside the class.
 
-By adding powers of the input(s) to the feature vector (and then
-finding the coefficients $$\theta_i$$) you can find increasingly complex
-models that fit the training examples better and better---even
-_exactly_. However, such models frequently fail to _generalize_ to examples
-outside the training set. This problem, called **overfitting,** is common in machine learning.
-
 # Detecting Overfitting
 
 In practice, we are given a data set and asked to find a model that fits it. We
-_detect_ overfitting by separating a **testing set** of data apart from the
-**training set**. During gradient descent, only the training set is used in the
-cost function. After the $$\theta_i$$ have been found that minimize the
-cost on the training set, we check that model's cost on the testing set. If the
-testing set cost is significantly higher than the training set cost, then we
-know overfitting has occurred.
+_detect_ overfitting by separating a [testing
+set](/2018/06/06/even-less-linear-regression#testing-set) of data apart from
+the training set. During gradient descent, only the training set is used in the
+cost function. After the $$\theta_i$$ have been found that minimize the cost on
+the training set, we check that model's cost on the testing set. If the testing
+set cost is significantly higher than the training set cost, then we know
+overfitting has occurred.
 
 # Avoiding Overfitting
 
