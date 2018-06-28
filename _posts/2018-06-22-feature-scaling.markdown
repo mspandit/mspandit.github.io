@@ -20,12 +20,12 @@ vector for each example. The feature vector took each input, subtracted 50, and
 then divided by 50:
 
 **Python**
-```
+```python
 self.feature_vector = numpy.array([[1], [(x1 - 50) / 50.0], [(x2 - 50) / 50.0], [((x1 - 50) / 50.0) ** 2], [((x2 - 50) / 50.0) ** 2]])
 ```
 
 **Julia**
-```
+```julia
   [[1.0], [(x1 - 50.0) / 50.0], [(x2 - 50.0) / 50.0], [((x1 - 50.0) / 50.0)^2], [((x2 - 50.0) / 50.0)^2]],   
 ```
 
