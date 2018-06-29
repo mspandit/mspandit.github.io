@@ -20,28 +20,28 @@ the library so that you can begin `using` it.
 
 The creation of the graph begins with the instantiation of `placeholder` objects.
 
-```julia
+{% highlight julia %}
 exampleInput = TensorFlow.placeholder(Float64, shape=[nothing, length(trainingExamples[1].featureVector)])
 exampleOutput = TensorFlow.placeholder(Float64, shape=[nothing, length(trainingExamples[1].outputVector)])
-```
+{% endhighlight %}
 
 When the graph is executed, the placeholders will be assigned the 5-value input
 and 3-value output vectors from the list of examples. The assignment of
 placeholders to lists of actual values is made in a _feed dictionary:_
 
-```julia
+{% highlight julia %}
 feeds = Dict(
   exampleInput => [trainingExamples[i].featureVector[j] for i=1:length(trainingExamples), j=1:length(trainingExamples[1].featureVector)],
   exampleOutput => [trainingExamples[i].outputVector[j] for i=1:length(trainingExamples), j=1:length(trainingExamples[1].outputVector)]
 )
-```
+{% endhighlight %}
 
 $$\vec{\theta}$$ is defined as a `Variable` matrix in the graph, initially
 composed of zeroes:
 
-```julia
+{% highlight julia %}
 theta = TensorFlow.Variable(TensorFlow.zeros(thetaShape))
-```
+{% endhighlight %}
 
 The following lines look a lot like we are calculating a value of the model and
 a cost---but don't be fooled! In reality, these lines only extend the graph to calculate the model value
@@ -49,10 +49,10 @@ and the cost from the example input, example output, and $$\vec{\theta}$$
 defined above. The actual calculation will happen later, during execution of the
 graph.
 
-```julia
+{% highlight julia %}
 model = 1.0 / (1.0 + TensorFlow.exp(TensorFlow.matmul(exampleInput, theta)))
 cost = -1.0 / length(trainingExamples) * TensorFlow.reduce_sum(TensorFlow.multiply(exampleOutput, TensorFlow.log(model)) + TensorFlow.multiply((1 - exampleOutput), TensorFlow.log(1 - model)))
-```
+{% endhighlight %}
 
 Similarly, the following lines extend the graph to determine the
 gradients of the cost function with respect to $$\vec{\theta}$$ and then update
@@ -65,26 +65,27 @@ matrix in the graph. We don't want to re-assign `theta` at this point. We want t
 graph so that during execution, the value of the matrix is updated. `updateTheta`
 refers to the portion of the graph that does this.
 
-```julia
+{% highlight julia %}
 calculateGradients = TensorFlow.gradients(cost, theta)
 updateTheta = TensorFlow.assign(theta, theta - TensorFlow.multiply(learningRate, calculateGradients))
-```
+{% endhighlight %}
 
 The graph will execute in the context of a `Session`. We instantiate the
 `Session` and initialize any global variables in the graph:
 
-```julia
+{% highlight julia %}
 sess = TensorFlow.Session()
 run(sess, TensorFlow.global_variables_initializer())
-```
+{% endhighlight %}
 
 Finally, we are ready to _execute_ the graph. The following line executes the
 portion of the graph referred to by `cost`, feeding the examples in through the
 placeholders defined earlier:
 
-```julia
+{% highlight julia %}
 println("Starting cost: $(run(sess, cost, feeds))")
-```
+{% endhighlight %}
+
 `run()` returns the result of the execution, which in this case is the
 initial cost, when all $$\vec{\theta}$$ values are initialized to zero.
 
@@ -93,10 +94,11 @@ gradients and the portion that updates $$\vec{\theta}$$. We could ignore or disc
 values, because the execution has already updated the $$\vec{\theta}$$ matrix.
 But we need the values in `gradients` to know when to stop iterating. Also, it
 helps debugging to keep and print the return values.
-```julia
+
+{% highlight julia %}
 gradients = run(sess, calculateGradients, feeds)
 newTheta = run(sess, updateTheta, feeds)
-```
+{% endhighlight %}
 
 You can run the complete program below, take the `theta` values it produces, and
 enter them [here](/2018/06/22/logistic-regression-julia#entry-table) to verify
