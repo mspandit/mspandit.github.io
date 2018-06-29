@@ -2,7 +2,7 @@
 layout: post
 title: "Multiclass Logistic Regression in Python"
 summary: "A Python program that finds polynomial logistic models for three classes. Interactive visualization of the results."
-date:   2018-06-15 05:58:00
+date:   2018-06-14 05:58:00
 ---
 
 The chart below show 30 examples in three classes---red, green, and blue. Each
