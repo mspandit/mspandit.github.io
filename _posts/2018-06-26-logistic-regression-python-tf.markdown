@@ -15,8 +15,8 @@ Below, you will see the same program written using TensorFlow. Let's look at
 how the cost function is defined and how the partial derivative function is
 automatically generated.
 
-First, be sure you have run `pip install tensorflow` or otherwise installed
-the library so that you can `import` it.
+First, be sure you have run `pip install numpy tensorflow` or otherwise
+installed the libraries so that you can `import` them.
 
 The creation of the graph begins with the instantiation of `placeholder` objects.
 

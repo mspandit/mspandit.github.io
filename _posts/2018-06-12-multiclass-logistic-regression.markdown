@@ -22,7 +22,7 @@ highest probability corresponds to the predicted class.
 
 It is a simple matter to divide each output by the sum of the outputs. This
 ensures that the sum of the probabilities is 1.0. This combination of outputs
-is a predicted _probability distribution_ across classes.
+is a predicted <span id='probability-distribution'>_probability distribution_</span> across classes.
 
 In this case, the training data consists of examples $$ (\vec{x}^{(1)},
 \vec{y}^{(1)}), (\vec{x}^{(2)}, \vec{y}^{(2)}), \dots, (\vec{x}^{(m)},
