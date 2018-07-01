@@ -40,7 +40,7 @@ theta0 = tf.Variable(tf.zeros([10]))
 {% endhighlight %}
 
 The model function is slightly different from the logistic function used
-previously. `softmax` divides the logistic result for each class by the sum of
+previously. `softmax()` divides the logistic result for each class by the sum of
 the results over all classes, producing a [probability
 distribution](/2018/06/12/multiclass-logistic-regression#probability-distribution) across the possible outputs. The modified cost function reflects this
 variation.
@@ -76,6 +76,7 @@ accuracy = tf.reduce_mean(
 {% endhighlight %}
 
 The program below should run in under a minute and produce a model able to
-correctly classify over 91% of the test images.
+correctly classify over 91% of the test images. This is not a bad result, but
+next, we'll look at more complex models that do even better.
 
 <script src="https://gist.github.com/mspandit/4c1b234e9c03dcd2759ff57ddc5ea35b.js"></script>
