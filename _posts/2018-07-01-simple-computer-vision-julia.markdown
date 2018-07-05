@@ -17,8 +17,13 @@ and prints the accuracy of the classification. It runs in a few minutes.
 
 Remember to run `Pkg.add("TensorFlow")` before running it.
 
-The program includes functions to download and decompress the dataset from an
-internet source.
+The program includes functions from
+[https://github.com/malmaud/TensorFlow.jl](https://github.com/malmaud/TensorFlow
+.jl) to download and decompress the dataset from an internet source.
+
+{% highlight julia %}
+include(Pkg.dir("TensorFlow", "examples", "mnist_loader.jl"))
+{% endhighlight %}
 
 The model has $$28 \times 28 = 784$$ input values and 10 output values:
 
