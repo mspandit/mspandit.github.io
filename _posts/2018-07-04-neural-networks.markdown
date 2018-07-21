@@ -16,12 +16,12 @@ fidelity.
 
 [<img src="/images/Neuron.png" />](https://en.wikipedia.org/wiki/Neuron)
 
-In neural networks for machine learning, a "neuron" refers to a model that
-composes a linear combination of inputs with a nonlinear function. The logistic
-regression model is a simple neuron, but other nonlinear **activation
-functions** can be used for various applications. The parameters
-$$\vec{\theta}$$ are usually called the **weights** of the model, because the
-linear combination is a weighted sum of the inputs.
+In neural networks for machine learning, a <span id="neuron">**neuron**</span>
+refers to a model that composes a linear combination of inputs with a nonlinear
+function. The logistic regression model is a simple neuron, but other nonlinear
+**activation functions** can be used for various applications. The parameters
+$$\vec{\theta}$$ are usually called the <span id="weights">**weights**</span>
+of the model, because the linear combination is a weighted sum of the inputs.
 
 Neural networks can solve difficult problems with high accuracy when numerous
 neurons are organized in layers. The [muli-layer
@@ -36,7 +36,7 @@ nonlinear functions are all **hyperparameters** of a neural network and
 comprise its **architecture** or **topology**.
 
 The process of calculating the output of a neural network from a given input
-is frequently called **forward propagation,** because calculations flow forward
+is frequently called <span id="forward-propagation">**forward propagation,**</span> because calculations flow forward
 from the inputs, through intermediate layers, to the output.
 
 The process of adjusting the parameters during training is frequently called
