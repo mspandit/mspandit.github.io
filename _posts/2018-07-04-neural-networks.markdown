@@ -19,9 +19,10 @@ fidelity.
 In neural networks for machine learning, a <span id="neuron">**neuron**</span>
 refers to a model that composes a linear combination of inputs with a nonlinear
 function. The logistic regression model is a simple neuron, but other nonlinear
-**activation functions** can be used for various applications. The parameters
-$$\vec{\theta}$$ are usually called the <span id="weights">**weights**</span>
-of the model, because the linear combination is a weighted sum of the inputs.
+<span id="activation-functions">**activation functions**</span> can be used for
+various applications. The parameters $$\vec{\theta}$$ are usually called the
+<span id="weights">**weights**</span> of the model, because the linear
+combination is a weighted sum of the inputs.
 
 Neural networks can solve difficult problems with high accuracy when numerous
 neurons are organized in layers. The [muli-layer

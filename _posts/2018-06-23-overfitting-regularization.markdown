@@ -39,7 +39,7 @@ or the linear regression [cost function](/2018/06/01/linear-regression):
 $$ \frac{1}{2}\sum_{i=1}^m{(\theta_0 + \theta_1x^{(i)}- y^{(i)})^2} + \lambda\theta_1^2$$
 
 In the general case, where $$\theta_i$$ are are polynomial coefficients, we say
-that the resulting $$\vec{\theta}$$ is made **sparse** because it contains more
+that the resulting $$\vec{\theta}$$ is made <span id="sparse">**sparse**</span> because it contains more
 values that are zero (or close to zero), thereby eliminating (or diminishing)
 the contribution of a feature to a model. $$\lambda$$ is a parameter that
 influences how simple the resulting model should become.

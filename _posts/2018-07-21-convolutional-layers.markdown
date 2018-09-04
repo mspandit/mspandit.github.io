@@ -32,11 +32,12 @@ Learning_](http://neuralnetworksanddeeplearning.com/):
 ![Feature Map](http://neuralnetworksanddeeplearning.com/images/tikz44.png)
 
 Each neuron in the layer is connected to a different region of the input.
-However, each neuron _is constrained to have the same weights as every other._
-In other words, the neurons in a convolutional layer are identical except for
-the region of the input they are connected to. As a result, the neurons learn
-to detect one local feature, and the layer becomes a **feature map,**
-describing _where_ in the image that feature occured.
+However, the regions may overlap. Furthermore, each neuron _is constrained to
+have the same weights as every other._ In other words, the neurons in a
+convolutional layer are identical except for the region of the input they are
+connected to. As a result, the neurons learn to detect one local feature, and
+the layer becomes a **feature map,** describing _where_ in the image that
+feature occured.
 
 The multi-layer perceptron had a layer that looked for 500 different features,
 each across the entire input. Similarly, in practice, numerous two-dimensional
