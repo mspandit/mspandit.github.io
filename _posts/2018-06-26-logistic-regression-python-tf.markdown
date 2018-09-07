@@ -20,28 +20,28 @@ installed the libraries so that you can `import` them.
 
 The creation of the graph begins with the instantiation of `placeholder` objects.
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="53">
 example_input = tf.placeholder(tf.float32, [None, len(training_examples[0].feature_vector)])
 example_output = tf.placeholder(tf.float32, [None, len(training_examples[0].output_vector)])
-{% endhighlight %}
+</pre>
 
 When the graph is executed, the placeholders will be assigned the 5-value input
 and 3-value output vectors from the list of examples. The assignment of
 placeholders to lists of actual values is made in a _feed dictionary:_
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="55">
 feeds = {
     example_input: [ex.feature_vector for ex in training_examples],
     example_output: [ex.output_vector for ex in training_examples]
 }
-{% endhighlight %}
+</pre>
 
 $$\vec{\theta}$$ is defined as a `Variable` matrix in the graph, initially
 composed of zeroes:
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="62">
 theta = tf.Variable(tf.zeros(theta_shape))
-{% endhighlight %}
+</pre>
 
 The following lines look a lot like we are calculating a value of the model and
 a cost---but don't be fooled! In reality, these lines only extend the graph to calculate the model value
@@ -49,10 +49,10 @@ and the cost from the example input, example output, and $$\vec{\theta}$$
 defined above. The actual calculation will happen later, during execution of the
 graph.
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="64">
 model = 1.0 / (1 + tf.exp(tf.matmul(example_input, theta)))
 cost = -1.0 / len(training_examples) * tf.reduce_sum(tf.multiply(example_output, tf.log(model)) + tf.multiply((1 - example_output), tf.log(1 - model)))
-{% endhighlight %}
+</pre>
 
 Similarly, the following lines extend the graph to determine the
 gradients of the cost function with respect to $$\vec{\theta}$$ and then update
@@ -65,26 +65,26 @@ matrix in the graph. We don't want to re-assign `theta` at this point. We want t
 graph so that during execution, the value of the matrix is updated. `update_theta`
 refers to the portion of the graph that does this.
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="67">
 calculate_gradients = tf.gradients(xs=theta, ys=cost)[0]
 update_theta = theta.assign(theta - tf.multiply(learning_rate, calculate_gradients))
-{% endhighlight %}
+</pre>
 
 The graph will execute in the context of a `Session`. We instantiate the
 `Session` and initialize any global variables in the graph:
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="70">
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-{% endhighlight %}
+</pre>
 
 Finally, we are ready to _execute_ the graph. The following line executes the
 portion of the graph referred to by `cost`, feeding the examples in through the
 placeholders defined earlier:
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="73">
     print("Starting cost: %s" % sess.run(cost, feed_dict=feeds))
-{% endhighlight %}
+</pre>
 
 `Session.run()` returns the result of the execution, which in this case is the
 initial cost, when all $$\vec{\theta}$$ values are initialized to zero.
@@ -94,10 +94,10 @@ gradients and the portion that updates $$\vec{\theta}$$. We could ignore or disc
 values, because the execution has already updated the $$\vec{\theta}$$ matrix.
 But we need the values in `gradients` to know when to stop iterating. Also, it
 helps debugging to keep and print the return values.
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="78">
       gradients = sess.run(calculate_gradients, feed_dict=feeds)
       new_theta = sess.run(update_theta, feed_dict=feeds)
-{% endhighlight %}
+</pre>
 
 
 You can run the complete program below, take the `theta` values it produces, and

@@ -10,13 +10,15 @@ layer](/2018/07/21/convolutional-layers), we are left with a group of feature
 maps, each of which indicates the presence of a single feature at various
 locations.
 
-Each feature map is smaller than its input. How much smaller depends on the
-size of the square processed by each neuron, and the amount of overlap between
-one neuron's input and the next. However, there are frequently tens or hundreds
-of feature maps in a group, so the output of the group can be many times larger
-than the input. It is possible to connect these feature maps to a
-fully-connected layer for classification, but this presents an inordinately
-large number of calculations.
+Each feature map may be smaller than its input. How much smaller depends on 
+* the size of the square processed by each neuron, 
+* the amount of overlap between one neuron's input and the next, and
+* whether outer edge of the feature map is _padded_ with pixels to ensure it is the same size as the input. 
+
+However, there are frequently tens or hundreds of feature maps in a group, so
+the output of the group can be many times larger than the input. It is possible
+to connect these feature maps to a fully-connected layer for classification,
+but this presents an inordinately large number of calculations.
 
 **Pooling** layers consist of neurons that, like convolutional layer neurons,
 are activated by square regions in their input. However, the input regions of

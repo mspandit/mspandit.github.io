@@ -21,26 +21,26 @@ The program includes functions from
 [https://github.com/malmaud/TensorFlow.jl](https://github.com/malmaud/TensorFlow
 .jl) to download and decompress the dataset from an internet source.
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="4">
 include(Pkg.dir("TensorFlow", "examples", "mnist_loader.jl"))
-{% endhighlight %}
+</pre>
 
 The model has $$28 \times 28 = 784$$ input values and 10 output values:
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="13">
 exampleInput = TensorFlow.placeholder(Float64, shape=[nothing, 784])
 exampleOutput = TensorFlow.placeholder(Float64, shape=[nothing, 10])
-{% endhighlight %}
+</pre>
 
 The dataset is provided to us as input vectors without $$x_0 = 1$$
 [elements](/2018/06/04/not-completely-linear-regression) for $$\theta_0$$.
 Therefore, we separate the $$\vec{\theta_0}$$ from the remaining
 $$\vec{\theta}$$:
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="24">
 thetas = TensorFlow.Variable(TensorFlow.ones((784, 10)))
 theta0 = TensorFlow.Variable(TensorFlow.ones((1, 10)))
-{% endhighlight %}
+</pre>
 
 The model function is slightly different from the logistic function used
 previously. `softmax()` divides the logistic result for each class by the sum of
@@ -48,7 +48,7 @@ the results over all classes, producing a [probability
 distribution](/2018/06/12/multiclass-logistic-regression#probability-distribution) across the possible outputs. The modified cost function reflects this
 variation.
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="27">
 modelOutput = TensorFlow.nn.softmax(
   TensorFlow.matmul(exampleInput, thetas) + theta0
 )
@@ -58,7 +58,7 @@ cost = TensorFlow.reduce_mean(
     axis=2
   )
 )
-{% endhighlight %}
+</pre>
 
 In [SGD](/2018/06/28/stochastic-gradient-descent), the overall cost can be
 expected to fluctuate from iteration to iteration. The size of the gradients
@@ -66,12 +66,12 @@ will fluctuate also. Therefore, we don't bother printing the starting cost of
 the model, and we iterate a fixed number of times rather than continuing until
 the gradients get close to zero:
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="43">
 for i = 1:16000
   run(sess, [updateThetas, updateTheta0], getFeeds())
   if (0 == i % 100) print(".") end
 end
-{% endhighlight %}
+</pre>
 
 Finally, we extend the graph to measure the accuracy of the model. This is done
 by comparing the `arg_max()` of the model output---returning the digit with the
@@ -79,14 +79,14 @@ highest probability---with the `arg_max()` of the example output vector---the
 digit corresponding to the position with a 1. `equal()` will return True if the
 two are equal. `cast()` will convert True values to 1.0 and False values to 0.0.
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="48">
 accuracy = TensorFlow.reduce_mean(
   TensorFlow.cast(
     TensorFlow.equal(TensorFlow.arg_max(modelOutput, 2), TensorFlow.arg_max(exampleOutput, 2)),
     TensorFlow.Float32
   )
 )
-{% endhighlight %}
+</pre>
 
 The program below should run in a few minutes and produce a model able to
 correctly classify over 91% of the test images. This is not a bad result, but

@@ -19,15 +19,15 @@ classification model.
 Feature detection happens with logistic regression models operating on raw
 inputs:
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="67">
 features = 1.0 / (1.0 + tf.exp(tf.matmul(example_input, feature_thetas) + feature_theta0))
-{% endhighlight %}
+</pre>
 
 Classification happens with a softmax model operating on features:
 
-{% highlight python %}
+<pre data-enlighter-language="python" data-enlighter-lineoffset="68">
 model_output = tf.nn.softmax(tf.matmul(features, output_thetas) + output_theta0)
-{% endhighlight %}
+</pre>
 
 # Number of Features
 

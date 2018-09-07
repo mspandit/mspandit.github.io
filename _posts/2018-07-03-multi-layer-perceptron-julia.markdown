@@ -20,15 +20,15 @@ This program has _tracked parameters_ `featureThetas` and `featureTheta0` for
 the feature detection models as well as `outputThetas` and `outputTheta0` for
 the classification model. 
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="37">
 featureThetas = param([scale(r, 784, 500) for r in rand((784, 500))]) # param(zeros((784, 500)))
 featureTheta0 = param([scale(r, 1, 500) for r in rand((1, 500))]) # param(zeros((1, 500)))
-{% endhighlight %}
+</pre>
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="41">
 outputThetas = param([scale(r, 500, 10) for r in rand((500, 10))]) # param(zeros((500, 10)))
 outputTheta0 = param([scale(r, 1, 10) for r in rand((1, 10))]) # param(zeros((1, 10)))
-{% endhighlight %}
+</pre>
 
 In FluxML, tracked parameters are like any other numerical or array type, with
 a notable exception: When you perform mathematical operations on a tracked
@@ -38,27 +38,27 @@ to itself._
 Feature detection happens with logistic regression models operating on raw
 inputs:
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="39">
 features(example) = 1.0 ./ (1.0 .+ exp.(example * featureThetas .+ featureTheta0))
-{% endhighlight %}
+</pre>
 
 Classification happens with a softmax model operating on features:
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="43">
 model(example) = NNlib.softmax(features(example) * outputThetas .+ outputTheta0)
-{% endhighlight %}
+</pre>
 
 During training, the `back!()` function calculates the cost with the side
 effect of accumulating gradients. The gradients are retrieved with calls to
 `grad()`.
 
-{% highlight julia %}
+<pre data-enlighter-language="julia" data-enlighter-lineoffset="50">
   back!(cross_entropy)
   update!(featureThetas, -learningRate .* grad(featureThetas))
   update!(featureTheta0, -learningRate .* grad(featureTheta0))
   update!(outputThetas, -learningRate .* grad(outputThetas))
   update!(outputTheta0, -learningRate .* grad(outputTheta0))
-{% endhighlight %}
+</pre>
 
 # Number of Features
 

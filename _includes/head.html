@@ -20,4 +20,17 @@
 
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+
+  <!-- Include EnlighterJS Styles -->
+  <link rel="stylesheet" type="text/css" href="/css/EnlighterJS.min.css" />
+
+  <!-- Include MooTools Framework -->
+  <script type="text/javascript" src="/js/MooTools-Core-1.6.0.js"></script>
+  <script type="text/javascript" src="/js/MooTools-More-1.6.0.js"></script>
+
+  <!-- Include EnlighterJS -->
+  <script type="text/javascript" src="/js/EnlighterJS.min.js" ></script>
+
+  <!-- Initialize EnlighterJS -->
+  <meta name="EnlighterJS" content="Advanced javascript based syntax highlighting" data-indent="4" data-selector-block="pre" data-selector-inline="code" data-language="javascript" />
 </head>
