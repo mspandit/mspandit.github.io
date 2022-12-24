@@ -44,6 +44,8 @@ image. Detection with VGG16 takes 47s / image (on a GPU).
 R-CNN is slow because it performs a ConvNet forward pass for each object
 proposal, without sharing computation.
 
+A Matlab (!) implementation is available [here](https://github.com/rbgirshick/rcnn). A Python implementation is available [here](https://github.com/mindspore-ai/models/tree/master/research/cv/rcnn)
+
 # [Fast R-CNN](https://arxiv.org/pdf/1504.08083.pdf)
 
 We propose a single-stage training algorithm that jointly learns to
@@ -82,3 +84,8 @@ ImageNet classification) are replaced with the two sibling layers described
 earlier (a fully connected layer and softmax over K + 1 categories and
 category-specific bounding-box regressors). Third, the network is modified to
 take two data inputs: a list of images and a list of RoIs in those images.
+
+A Python implementation (with some Matlab) is available
+[here](https://github.com/rbgirshick/fast-rcnn). Facebook AI Research's Python
+implementation of several object detection models including Fast R-CNN is
+available [here](https://github.com/facebookresearch/detectron).

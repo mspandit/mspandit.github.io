@@ -35,12 +35,12 @@ presence and properties of an entity in the image:
 * texture, etc.
 
 A separate neuron (with logistic output) _could_ be used to represent the
-probability that the entity is present in/absent from the image. This is the approach used in [this paper][3]. However, in
-this paper, the overall length of the capsule (magnitude of the vector of
-activation of neurons in the capsule) represents the probability of the
-existence of the entity. (This length is scaled to the range 0.0--1.0 using a
-non-linear _squash_ function.) The orientation of the vector represents the
-properties of the entity.
+probability that the entity is present in/absent from the image. This is the
+approach used in [this paper][3]. However, in this paper, the overall length of
+the capsule (magnitude of the vector of activation of neurons in the capsule)
+represents the probability of the existence of the entity. (This length is
+scaled to the range 0.0--1.0 using a non-linear _squash_ function.) The
+orientation of the vector represents the properties of the entity.
 
 Each node in the parse tree corresponds to an active capsule. In an iterative
 process involving cooperation between parents and children, each active capsule
@@ -136,7 +136,14 @@ vector of the correct digit is used to reconstruct input image:
 Calculate sum of squared differences between outputs and actual pixel
 intensities.
 
+# Implementations
+
+The "official" implementation in Python with TensorFlow is available [here][5].
+See an **annotated Python implementation** [here][6].
+
 [1]: <https://www.cs.toronto.edu/~hinton/absps/nips99ywt.pdf> "Learning to Parse Images"
 [2]: <https://www.cs.toronto.edu/~bonner/courses/2022s/csc2547/papers/capsules/transforming-autoencoders,-hinton,-icann-2011.pdf> "Transforming Auto-Encoders"
 [3]: <https://openreview.net/pdf?id=HJWLfGWRb> "Matrix Capsules with EM Routing"
 [4]: <https://arxiv.org/pdf/1906.06818.pdf> "Stacked Capsule Autoencoders"
+[5]: <https://github.com/Sarasra/models/tree/master/research/capsules> "Sarasra's fork of tensorflow/models"
+[6]: <https://nn.labml.ai/capsule_networks/index.html> "Capsule Networks"

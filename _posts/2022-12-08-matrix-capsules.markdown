@@ -121,6 +121,16 @@ The routing procedure is used between each adjacent pair of capsule layers. For
 convolutional capsules, each capsule in the parent layer sends feedback only to
 capsules within its receptive field in the child layer
 
+# Implementation
+
+The "official" Python and TensorFlow release (but still qualified as "under
+construction!") is
+[here](https://github.com/google-research/google-research/tree/master/capsule_em).
+
+IBM published an implementation [here][5] claiming to fix certain bugs.
+
 [1]: <https://openreview.net/pdf?id=HJWLfGWRb> "Matrix Capsules with EM Routing"
 [2]: <https://arxiv.org/pdf/1710.09829.pdf> "Dynamic Routing Between Capsules"
 [3]: <https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm> "Expectation-Maximization Algorithm"
+[4]: <https://github.com/google-research/google-research/tree/master/capsule_em> "Open source release of EMCAPSNet"
+[5]: <https://github.com/IBM/matrix-capsules-with-em-routing> 'Implementation of "Matrix Capsules with EM Routing"'

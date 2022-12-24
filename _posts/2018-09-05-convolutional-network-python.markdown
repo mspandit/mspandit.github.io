@@ -6,7 +6,7 @@ date:   2018-09-05 09:16:00
 ---
 
 The Python program below is based on an example from the [Tensorflow repository <i class="fa
-fa-external-link-alt" title="(External link)"></i>](https://github.com/tensorflow/tensorflow). It uses a combination of
+fa-external-link-alt" title="(External link)"></i>](https://github.com/tensorflow/tensorflow/blob/r1.11/tensorflow/examples/tutorials/mnist/mnist_deep.py). It uses a combination of
 [convolutional](/2018/07/21/convolutional-layers) and
 [pooling](/2018/09/04/pooling-layers) layers to classify images from the MNIST
 dataset. The program should run for about half an hour and achieve an accuracy

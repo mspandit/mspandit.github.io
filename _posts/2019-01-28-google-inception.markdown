@@ -54,3 +54,5 @@ performance for sparse matrix multiplication.
 The main idea of the Inception architecture is based on finding out how an
 optimal local sparse structure in a convolutional vision network can be
 approximated and covered by readily available dense components.
+
+A Python implementation is available [here](https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v1.py).
