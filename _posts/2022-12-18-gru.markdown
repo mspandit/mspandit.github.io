@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Gated Recurrent Unit (GRU)"
+summary: ""
+date:   2022-12-18 07:26:00
+---
+
+The GRU is a simpler recurrent unit than the LSTM. It combines the LSTM's
+"forget" and "input" gates into a single "update gate."
+
+[1]: <https://colah.github.io/posts/2015-08-Understanding-LSTMs/> "Understanding LSTM Networks"
+
+[2]: <https://arxiv.org/pdf/1409.0473> "Neural Machine Translation by Jointly Learning to Align and Translate"

@@ -1,0 +1,32 @@
+---
+layout: post
+title: "Long Short-Term Memory (LSTM)"
+summary: ""
+date:   2022-12-17 07:26:00
+---
+
+LSTMs are a special kind of RNN able to learn long-term dependencies.
+"Remembering information for long periods of time is practically their default
+behavior, not something they struggle to learn."
+
+The output of an LSTM is fed back into its input (or fed to a copy of the LSTM)
+as in a standard RNN.
+
+The (input and) output of an LSTM is divided into two parts
+
+* $$h_t$$ The previous $$h_{t-1}$$ is scaled by a factor (the "forget gate")
+ranging from 0.0 ("let nothing through") to 1.0 ("let everything through").
+Some amount ("input gate" multiplied by candidate values) is then added to it
+to store new information and generate $$h_t$$. Because $$h_{t-1}$$ is minimally
+processed, "It's very easy for information to just flow along it unchanged." If
+the forget gate is at 1.0, and the input gate is at 0.0, then $$h_t = h_{t-1}$$
+
+* $$y_t$$ A sigmoid layer scales $$y_t$$ for the update. This scaled value is
+multiplied by $$tanh(h_t)$$, which generates values between -1.0 and 1.0 to
+output only the parts we decided to.
+
+[Long Short-Term Memory](https://www.researchgate.net/publication/13853244_Long_Short-term_Memory)
+
+[Sequence to Sequence Learning with Neural Networks](https://arxiv.org/pdf/1409.3215.pdf)
+
+[Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)

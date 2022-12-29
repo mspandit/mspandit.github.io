@@ -1,0 +1,63 @@
+---
+layout: post
+title: "Recurrent Neural Networks"
+summary: ""
+date:   2022-12-16 07:26:00 -700
+---
+
+[RNNs][1] accept an input vector $$x$$ and generate an output vector $$y$$.
+However, the value of $$y$$ is influenced not only by the most recent $$x$$,
+but also on _the entire history of inputs $$x$$ that have been fed in._
+
+$$y \neq f(x)$$
+
+$$y = f(x_0, x_1, ... x_n)$$
+
+An RNN maintains internal "hidden state" $$h$$ that gets updated every time a
+new input $$x_i$$ is presented. The RNN's trainable parameters include
+
+* $$W_{hh}$$, which is multiplied by $$h$$ when it is updated,
+
+* $$W_{xh}$$, which is multiplied by $$x$$ when $$h$$ is updated, and
+
+* $$W_{hy}$$, which is multiplied by $$h$$ when $$y$$ is calculated.
+
+In a standard RNN,
+
+$$h_t = tanh(W_{hh}h_{t-1} + W_{xh}x_t)$$
+
+$$y_t = W_{hy}h_t$$
+
+You can see from the above that $$y_t$$ depends on $$h_t$$ which depends on
+$$h_{t-1}$$ and $$x_t$$. Consequently, RNNs can be thought of as "[multiple
+copies of the same network, each passing a message to a successor.][2]"
+
+(A 2-layer recurrent network can be formed by supplying the output of one RNN
+as the input of the other.)
+
+# Long-Term Dependencies
+
+One appeal of RNNs is that they connect previous inputs to a current task. In
+standard RNNs, the repeating module will have a very simple structure such as a
+single $$tanh()$$. If the gap (measured in number of inputs) between a relevant
+previous input and the place it is needed is small, then standard RNNs can
+learn to use the previous input. However, the gap between a relevant previous
+inputs and the place it is needed can become very large, and traditional RNNs
+can become unable to learn to connect the information. They [suffer from short-term memory][3]
+
+# Vanishing/Exploding Gradient
+
+Gradients are used to update a neural network's weights. During backpropagation
+through a recurrent neural network, the network calculates its gradient with
+respect to the gradients in the later step. If the gradients in the later step
+are less than 1.0, then the gradients may shrink to zero exponentially for
+earlier steps, resulting in no learning from early inputs. If the gradients in
+the later step are greater than 1.0, then the gradients may explode
+exponentially for earlier steps, resulting in unstable weights based on early
+inputs.
+
+[1]: <https://colah.github.io/posts/2015-08-Understanding-LSTMs/> "Understanding LSTM Networks"
+
+[2]: <http://karpathy.github.io/2015/05/21/rnn-effectiveness/> "The Unreasonable Efectiveness of Recurrent Neural Networks"
+
+[3]: <https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21> "Illustrated Guide to LSTM’s and GRU’s: A step by step explanation"
