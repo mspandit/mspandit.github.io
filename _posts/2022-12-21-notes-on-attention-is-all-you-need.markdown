@@ -304,10 +304,11 @@ input and any output, the easier it is to learn long-range dependencies.
 
 # Code
 
-Available for TensorFlow [here][4] and for PyTorch [here][5].
+Available for TensorFlow [here][4] and for PyTorch [here][6] and [here][5].
 
 [1]: <https://arxiv.org/abs/1706.03762> "Attention is All You Need"
 [2]: <https://arxiv.org/abs/1512.03385> "Deep Residual Learning for Image Recognition"
 [3]: <https://arxiv.org/abs/1607.06450> "Layer Normalization"
 [4]: <https://github.com/tensorflow/tensor2tensor> "Tensor2Tensor"
 [5]: <https://github.com/tunz/transformer-pytorch> "PyTorch Transformer"
+[6]: <https://github.com/huggingface/transformers> "Huggingface Transformers"
