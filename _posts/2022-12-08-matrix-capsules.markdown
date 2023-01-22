@@ -111,9 +111,9 @@ stride of 2, and ReLU nonlinearity.
 
 2. PrimaryCaps layer with $$B = 32$$ feature maps
 
-3. ConvCaps1 layer with 3 &times; 3 kernel, $$C = 32$$ feature maps and a stride of 2
+3. ConvCaps1 layer with K = 3 &times; 3 kernel, $$C = 32$$ feature maps and a stride of 2
 
-4. ConvCaps2 layer with 3 &times; 3 kernel, $$D = 32$$ feature maps and a stride of 1
+4. ConvCaps2 layer with K = 3 &times; 3 kernel, $$D = 32$$ feature maps and a stride of 1
 
 5. Final capsule layer with one capsule per output class
 
