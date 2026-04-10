@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What is a Monad (in Rust)?"
-summary: ""
+summary: "Transcription of the video <em>What is a Monad? - Computerphile</em> but modified for Rust"
 date:   2026-04-06 12:40:00 -0700
 ---
 
@@ -83,7 +83,7 @@ Let's have three simple examples here&mdash;we'll have one, and we'll have six
 divided by two, and let's do one more example, we'll have six divided by three
 divided by one.
 
-| Mathematics | Rust |
+| Mathematics&nbsp; | &nbsp;Rust |
 | ----------- | ---- |
 | 1 |  |
 | 6 &divide; 2 | |
@@ -95,7 +95,7 @@ actually get represented as values of our expression data type? The first
 one is very simple&mdash;if we want to represent the value one, we just need to use
 the `Val` tag, so write `Val` of one.
 
-| Mathematics | Rust |
+| Mathematics&nbsp; | &nbsp;Rust |
 | ----------- | ---- |
 | 1 | `Expr::Val(1)` |
 | 6 &divide; 2 | |
@@ -105,7 +105,7 @@ If we want to have an expression like six
 divided by two, well it's a division, so we have a `Div` at the top level, and
 then we have two values&mdash;we have `Val` six, and `Val` two.
 
-| Mathematics | Rust |
+| Mathematics&nbsp; | &nbsp;Rust |
 | ----------- | ---- |
 | 1 | `Expr::Val(1)` |
 | 6 &divide; 2 | `Expr::Div(Box::new((Expr::Val(6), Expr::Val(2))))` |
@@ -114,7 +114,7 @@ then we have two values&mdash;we have `Val` six, and `Val` two.
 The last one will need two divisions, three `Val` constructors, and then a bunch
 of brackets.
 
-| Mathematics | Rust |
+| Mathematics&nbsp; | &nbsp;Rust |
 | ----------- | ---- |
 | 1 | `Expr::Val(1)` |
 | 6 &divide; 2 | `Expr::Div(Box::new((Expr::Val(6), Expr::Val(2))))` |

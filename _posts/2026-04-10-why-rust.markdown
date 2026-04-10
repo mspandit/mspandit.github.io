@@ -1,0 +1,118 @@
+---
+layout: post
+title: "Why Rust?"
+summary: "After decades of software development, I've recently settled on the use of Rust. Here's why."
+date:   2026-04-08 12:01:00 -0700
+---
+
+For decades, I have enjoyed web application development in
+[Ruby](https://www.ruby-lang.org/en/) and observed the evolution of
+[JavaScript](https://en.wikipedia.org/wiki/JavaScript) from its earliest days.
+
+As an AI developer, I started with [Common
+Lisp](https://en.wikipedia.org/wiki/Lisp_(programming_language)), but was later
+forced to use [Python](https://www.python.org) heavily, even though I dislike
+its syntax. I did significant experiments in [Go](https://go.dev),
+[Haskell](https://www.haskell.org) and [Julia](https://julialang.org) (which
+readers of this blog are familiar with).
+
+I've recently settled on the use of [Rust](https://rust-lang.org). Here's why:
+
+The Rust compiler enforces **strong typing and strict ownership rules**. This
+eliminates, at compile time, many errors that would otherwise get deferred to
+run-time. Such errors made it more difficult to maintain older Ruby code that
+was crashing in production.
+
+Python recently introduced [type
+hints](https://docs.python.org/3/library/typing.html), but without enforcement,
+and when dealing with legacy code, there is a slippery slope to the quagmire of
+dynamic typing. (In my experience, type enforcement made
+[TypeScript](https://www.typescriptlang.org) a huge improvement over
+JavaScript.)
+
+The Rust toolchain incorporates and enforces the latest innovations in
+**dependency management**. This makes it easy to get a codebase running in a new
+environment.
+
+AI researchers are to be commended for publishing their work in open source
+repositories (usually of Python code). However, I have wasted many hours trying
+to figure out which versions of Python and dependent libraries their code
+successfully ran on, and getting those libraries installed in my environment.
+[UV](https://docs.astral.sh/uv/) promises to bring Python dependency management
+to modern standards. It is written in Rust &#128512;.
+
+The **smart pointer** system, in combination with strict ownership rules, allow
+error-free management of memory allocated on the
+[heap](https://en.wikipedia.org/wiki/Memory_management#HEAP), but encourage
+allocation on the
+[stack](https://en.wikipedia.org/wiki/Stack-based_memory_allocation). And
+management of the stack is orders of magnitude
+[faster](https://en.wikipedia.org/wiki/Stack-based_memory_allocation#Advantages_and_disadvantages)
+than management of the heap.
+
+I remember that [garbage
+collection](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science))
+essentially freed programmers (in
+[Java](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html),
+[.NET](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/),
+[Ruby](https://ruby-doc.org/core-2.5.3/GC.html),
+[Python](https://docs.python.org/3/library/gc.html),
+[Go](https://go.dev/doc/gc-guide), and
+[Julia](https://docs.julialang.org/en/v1/devdocs/gc/)) from concerns about
+memory allocation. When first learning Rust, I remember thinking, "Oh &#x1F4A9;,
+I have to concern myself with the stack vs. the heap _again._" Eventually, I
+concluded that the speed of execution and elegance of design afforded by the
+Rust approach are well worth the additional concern.
+
+The rules mentioned above make the learning curve for Rust very steep. There are
+reports of developers utterly frustrated by their first exposure to Rust. They
+struggle with the compiler, especially one of its components, the [borrow
+checker](https://doc.rust-lang.org/1.8.0/book/references-and-borrowing.html). I
+was one of these developers. These struggles manifest in hours spent compiling,
+editing, and recompiling.
+
+What really tipped me over to Rust was the **integration of an
+[LSP](https://microsoft.github.io/language-server-protocol/) server** in Visual
+Studio Code. (This integration is available in other editors as well.) This
+integration gives instantaneous feedback, exposing errors while you type code.
+
+Rust supports [type
+inference](https://rustc-dev-guide.rust-lang.org/type-inference.html). This
+makes code more concise. It makes Rust a bit easier to adopt for developers
+accustomed to dynamically-typed languages. But it can also make it harder to
+understand. LSP integration makes inferred types explicit. This aids
+development&mdash;without adding any unnecessary verbosity to the code. It also
+helps explain errors related to mismatched types.
+
+When the Rust compiler enforces strict rules, it is able to make certain
+assumptions about a program and its execution. Based on these assumptions,
+numerous [compiler
+optimizations](https://en.wikipedia.org/wiki/Optimizing_compiler) become
+possible, whether for speed, memory usage, or even power efficiency.
+
+I've spent most of my career enjoying (and indeed promoting) the benefits of
+[object-oriented
+programming](https://en.wikipedia.org/wiki/Object-oriented_programming) to
+manage complexity in large, long-lived systems. Along with much of the developer
+community, I learned to prefer [composition over
+inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance). In the
+last couple of years, I have found myself returning to my Common Lisp roots,
+enjoying and promoting the benefits of [functional
+programming](https://en.wikipedia.org/wiki/Functional_programming).
+([CoffeeScript](https://coffeescript.org/) emphasizes the functional aspects of
+JavaScript with a more concise syntax.) Here, Rust seems to strike an ideal
+balance. It supports [algebraic data
+types](https://en.wikipedia.org/wiki/Algebraic_data_type), [iterators,
+closures](https://doc.rust-lang.org/book/ch13-00-functional-features.html), and
+[monads](/2026/04/06/what-is-a-monad-rust.html). However, unlike Haskell, a
+"pure functional" programming language, Rust makes it easy to put `println!`
+statements pretty much anywhere, for basic debugging &#x1F60C;.
+
+I know at least two diehards who have devoted decades-long careers to software
+development in C++. When I ask them why they haven't adopted Rust, their answers
+are usually related to habits, an ecosystem of trusted, mature tools, and a
+community of relationships that allows them to produce and maintain high-quality
+code at large scale. This is perfectly understandable. However, for software
+developers with the curiosity to explore a new programming language and the
+opportunities it affords, I encourage you to work past the steep learning curve
+of Rust.
