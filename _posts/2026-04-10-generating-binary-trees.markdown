@@ -346,3 +346,5 @@ fn main() {
 ((a (b (c d))) e)
 (a (b (c (d e))))
 ```
+
+The repository containing the full code is [here](https://github.com/mspandit/rust-binary-tree-generator).
