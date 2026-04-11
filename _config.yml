@@ -6,15 +6,13 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Now Interactive LLC
-email: mspandit@now-interactive.net
+title: mspandit.github.io
+email: mspandit@yahoo.com
 description: > # this means to ignore newlines until "baseurl:"
-  Now Interactive LLC employs agile and test-driven development methodologies 
-  for extremely rapid delivery of marketing, customer service, and electronic 
-  commerce solutions.
+  mspandit@github.io
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://blog.now-interactive.net" # the base hostname & protocol for your site
-twitter_username: nwntrctv
+url: "https://mspandit.github.io" # the base hostname & protocol for your site
+twitter_username: mspandit
 github_username:  mspandit
 
 # Build settings
