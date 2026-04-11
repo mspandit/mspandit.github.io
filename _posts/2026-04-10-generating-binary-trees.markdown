@@ -347,4 +347,4 @@ fn main() {
 (a (b (c (d e))))
 ```
 
-The repository containing the full code is [here](https://github.com/mspandit/rust-binary-tree-generator).
+This version of the full code is [here](https://github.com/mspandit/rust-binary-tree-generator/releases/tag/2026-04-11).
