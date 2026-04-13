@@ -148,5 +148,6 @@ fn generate<T: Token>(input_sequence: impl Iterator<Item = T>)
 }
 ```
 
-These changes make the design more functional without altering the operation of
-the program.
+[These
+changes](https://github.com/mspandit/rust-binary-tree-generator/releases/tag/2026-04-13)
+make the design more functional without altering the operation of the program.
