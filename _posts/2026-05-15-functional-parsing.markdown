@@ -13,7 +13,7 @@ This is a representation of a grammar in [Chomsky normal
 form](https://en.wikipedia.org/wiki/Context-free_grammar#Normal_forms).
 
 A context free grammar consists of nonterminal symbols (of which one is a
-_start_), terminal symbols, and production rules. Each rule has a nonterminal
+_start),_ terminal symbols, and production rules. Each rule has a nonterminal
 symbol on the left-hand side and a sequence of symbols on the right-hand side.
 
 From a functional programming perspective, a symbol corresponds to a type, and a
@@ -32,6 +32,7 @@ each taking a single argument.
 | Unary Rule | Constructor returning a type given a single matching argument |
 | Binary Rule | Constructor returning a type given two matching arguments |
 | Conversion to Chomsky Normal Form | Currying of constructors with multiple arguments|
+
 
 Therefore, we can represent a unary rule as a function that accepts a terminal
 type `T` and returns a nonterminal type `N`&mdash;assuming it "matches." We can
@@ -70,15 +71,14 @@ nonterminal types corresponding to its binary rules.
     // nonterminals
     pub fn apply_binary(self: & Self, left: & N, right: & N) -> Vec<N> {
         self.binary.iter()
-        .flat_map(|rule| rule(left, right)
-        )
+        .flat_map(|rule| rule(left, right))
         .collect()
     }
 ```
 
 # Partial Grammars
 
-A _partial_ grammar will compose a grammar.
+A _partial_ grammar can compose a grammar.
 
 ```rust
 pub struct PartialGrammar<T, N>(pub Grammar<T, N>);
@@ -117,7 +117,7 @@ pub type Partial<N> = dyn Fn(& N) -> Vec<N>;
 
 # Symbols
 
-A symbol will compose
+A _symbol_ composes
 * a nonterminal (in which case it is _complete)_ or
 * a partial function (in which case it is _incomplete)_
 
@@ -130,13 +130,13 @@ pub enum Symbol<N> {
 
 # Contexts
 
-A context will be a stack of symbols:
+A context is a stack of symbols:
 
 ```rust
 pub struct Context<N>(pub Option<Rc<dyn Fn() -> (Symbol<N>, Self)>>)
 ```
 
-A context will be applicable to a symbol to produce a set of contexts.
+A context is applicable to a symbol to produce a set of contexts.
 
 There are six combinations of the stack, its top, the symbol, and the result of the application:
 
@@ -192,6 +192,38 @@ where T: Clone + 'static {
     }
 }
 ```
+
+The shift/reduce function on a context applies the unary rules of a grammar to
+an input token. The grammar is applied to these results to acquire partial
+functions. The context is then applied to the complete and incomplete symbols.
+
+```rust
+    pub fn shift_reduce<T>(self: Self, token: & T, g: & PartialGrammar<T, N>)
+    -> Vec<Self>
+    where T: Clone + Debug + 'static {
+        let unary_symbols = g.apply_unary(token);
+        let binary_symbols: Vec<Symbol<N>> = g
+        .apply_binary(& unary_symbols)
+        .into_iter().map(Symbol::Incomplete)
+        .collect();
+        let unary_symbols: Vec<Symbol<N>>= unary_symbols.clone()
+        .into_iter().map(Symbol::Complete)
+        .collect();
+        let retval = [unary_symbols, binary_symbols].concat()
+        .into_iter().flat_map(|symbol| self.apply(symbol, g))
+        .collect();
+        retval
+    }
+```
+
+# Parse State
+
+A _parse state_ composes contexts and a partial grammar:
+
+```rust
+```
+
+# Example Grammars
 
 The "binary tree" can very simply be represented as a string:
 
@@ -265,6 +297,38 @@ pub fn sentence() -> Grammar<String, Sentence> {
             ),
             _ => None
         }) as Rc<Binary<Sentence>>
+     ];
+    Grammar::new(unary, binary)
+}
+```
+
+The expression grammar can also be represented using a single unary rule and a single binary rule, returning different variants for the intermediate structures:
+
+```rust
+pub enum Expression {
+    UnOp(String),
+    E(String),
+    BinOp(String),
+    EBO(String),
+}
+
+pub fn expression() -> Grammar<char, Expression> {
+    let unary = vec![
+        Rc::new(|token: & char| match token {
+            '1' | '2' | '3' | '4' => Some(Expression::E(format!("{}", token))),
+            '-' => Some(Expression::UnOp("-".to_string())),
+            '+' => Some(Expression::BinOp("+".to_string())),
+            '*' => Some(Expression::BinOp("*".to_string())),
+            _ => None // No terminal rules
+        }) as Rc<Unary<char, Expression>>
+    ];
+    let binary = vec![
+        Rc::new(|left: & Expression, right: & Expression| match (left, right) {
+            (Expression::UnOp(_), Expression::E(_)) => Some(Expression::E(format!("({:?} {:?})", left, right))),
+            (Expression::E(_), Expression::BinOp(_)) => Some(Expression::EBO(format!("({:?} {:?})", left, right))),
+            (Expression::EBO(_), Expression::E(_)) => Some(Expression::E(format!("({:?} {:?})", left, right))),
+            _ => None
+        }) as Rc<Binary<Expression>>
      ];
     Grammar::new(unary, binary)
 }
