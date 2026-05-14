@@ -86,6 +86,12 @@ h1, h2, h3, h4, h5, h6, .nav {
     font-weight: $base-font-weight;
 }
 
+td, th {
+    padding-left: calc($spacing-unit / 4);
+    padding-right: calc($spacing-unit / 4);
+    padding-top: calc($spacing-unit / 4);
+    padding-bottom: calc($spacing-unit / 4);
+}
 
 
 /**
