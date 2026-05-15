@@ -23,7 +23,7 @@ argument. Binary rules correspond to constructors with two arguments. The fact
 that any CFG can be represented in Chomsky normal form is related to the fact
 that a function with numerous arguments can be
 [curried](https://en.wikipedia.org/wiki/Currying) into a sequence of functions,
-each taking a single argument.
+each taking a single argument&mdash;or at least a smaller number of arguments.
 
 | CFG | Functional Programming |
 | --- | ---------------------- |
@@ -35,7 +35,7 @@ each taking a single argument.
 
 
 Therefore, we can represent a unary rule as a function that accepts a terminal
-type `T` and returns a nonterminal type `N`&mdash;assuming it "matches." We can
+type `T` and, assuming it "matches," returns a nonterminal type `N`. We can
 represent a binary rule as a function that accepts two nonterminal types `N`
 and, assuming they "match," returns a nonterminal type `N`:
 
@@ -44,7 +44,8 @@ type Unary<T, N> = dyn Fn(& T) -> Option<N>;
 type Binary<N> = dyn Fn(& N, & N) -> Option<N>;
 ```
 
-A grammar (in Chomsky normal form) is a set of unary and binary rules:
+A functional grammar (in Chomsky normal form) is a set of unary and binary
+rules:
 
 ```rust
 pub struct Grammar<T, N> {
@@ -53,10 +54,10 @@ pub struct Grammar<T, N> {
 }
 ```
 
-We can now consider the grammar itself as a function. When applied to an input
-(terminal) type, it returns a set of nonterminal types corresponding to its
-unary rules. When applied to two nonterminal types, it returns a set of
-nonterminal types corresponding to its binary rules.
+We can now consider the _entire grammar_ as a function. When applied to an input
+(terminal) type, it returns a set of nonterminal types, one for each of its
+matching unary rules. When applied to two nonterminal types, it returns a set of
+nonterminal types, one for each of its matching binary rules.
 
 ```rust
     // Apply unary rules to a terminal, returning any number of
@@ -78,13 +79,14 @@ nonterminal types corresponding to its binary rules.
 
 # Partial Grammars
 
-A _partial_ grammar can compose a grammar.
+Although Chomsky normal form simplifies a grammar in certain ways, we can go
+further by currying functions. A _partial_ grammar composes a grammar.
 
 ```rust
 pub struct PartialGrammar<T, N>(pub Grammar<T, N>);
 ```
 
-Its `apply_unary` function will simply delegate to the grammar's function.
+Its `apply_unary` method simply delegates to the grammar's function.
 
 ```rust
     pub fn apply_unary(&self, token: & T) -> Vec<N> {
@@ -117,7 +119,8 @@ pub type Partial<N> = dyn Fn(& N) -> Vec<N>;
 
 # Symbols
 
-A _symbol_ composes
+A _symbol_ unifies what is returned from the `apply_unary` and `apply_binary`
+methods of a `PartialGrammar`. A symbol composes either
 * a nonterminal (in which case it is _complete)_ or
 * a partial function (in which case it is _incomplete)_
 
@@ -136,7 +139,7 @@ A context is a stack of symbols:
 pub struct Context<N>(pub Option<Rc<dyn Fn() -> (Symbol<N>, Self)>>)
 ```
 
-A context is applicable to a symbol to produce a set of contexts.
+A context can be applied to a symbol to produce a set of contexts.
 
 There are six combinations of the stack, its top, the symbol, and the result of the application:
 
@@ -193,14 +196,15 @@ where T: Clone + 'static {
 }
 ```
 
-The shift/reduce function on a context applies the unary rules of a grammar to
-an input token. The grammar is applied to these results to acquire partial
-functions. The context is then applied to the complete and incomplete symbols.
+The shift/reduce function on a context (now called `apply_token`) first applies
+the unary rules of a grammar to an input token to acquire a set of nonterminals.
+The grammar is applied to these nonterminals to acquire partial functions. The
+context is then applied to the complete and incomplete symbols.
 
 ```rust
-    pub fn shift_reduce<T>(self: Self, token: & T, g: & PartialGrammar<T, N>)
+    pub fn apply_token<T>(self: Self, token: & T, g: & PartialGrammar<T, N>)
     -> Vec<Self>
-    where T: Clone + Debug + 'static {
+    where T: Clone + 'static {
         let unary_symbols = g.apply_unary(token);
         let binary_symbols: Vec<Symbol<N>> = g
         .apply_binary(& unary_symbols)
@@ -209,10 +213,9 @@ functions. The context is then applied to the complete and incomplete symbols.
         let unary_symbols: Vec<Symbol<N>>= unary_symbols.clone()
         .into_iter().map(Symbol::Complete)
         .collect();
-        let retval = [unary_symbols, binary_symbols].concat()
+        [unary_symbols, binary_symbols].concat()
         .into_iter().flat_map(|symbol| self.apply(symbol, g))
-        .collect();
-        retval
+        .collect()
     }
 ```
 
@@ -221,6 +224,54 @@ functions. The context is then applied to the complete and incomplete symbols.
 A _parse state_ composes contexts and a partial grammar:
 
 ```rust
+pub struct State<T, N>
+where N: 'static {
+    context: Vec<Context<N>>,
+    grammar: PartialGrammar<T, N>,
+}
+```
+
+A state can be applied to an input token to produce a new state. This is done
+simply by applying each context in the old state to the token and collecting the
+results.
+
+```rust
+    pub fn apply(self: Self, token: & T) -> Self {
+        Self {
+            context: self.context.into_iter().flat_map(|current_context|
+                current_context.apply_token(token, &self.grammar)
+            ).collect(),
+            grammar: self.grammar,
+        }
+    }
+```
+
+The `filter_stacks` function has been renamed `single_contexts` but is otherwise
+very similar. The `tops` function has been modified in an important way. Not
+only does it check whether the context is non-empty, it checks whether the
+symbol on top is a complete symbol and the start symbol.
+
+```rust
+    pub fn tops(self: Self) -> Vec<N> {
+        self.context.into_iter().flat_map(|context| context.0.map_or(
+            Vec::default(), // Empty context --> return empty vector
+            // Non-empty context --> return vector with symbol
+            |ref f| match f().0 {
+                Symbol::Complete(s) if s.start(s.clone()) => vec![s],
+                _ => Vec::default(),
+            },
+        ))
+        .collect()
+    }
+```
+
+To be able to check whether the complete symbol on top is the start symbol, we
+require the nonterminal type to implement the `Start` trait:
+
+```rust
+pub trait Start<S> {
+    fn start(&self, s: S) -> bool;
+}
 ```
 
 # Example Grammars
@@ -252,7 +303,7 @@ pub fn binary_string() -> Grammar<char, BinaryString> {
 
 The sentence grammar can also be represented using a single unary rule and a
 single binary rule, but these rules return different variants for the
-intermediate structures:
+intermediate structures, `Det`, `N`, `P`, `V`, `NP`, `PP`, and `VP`:
 
 ```rust
 pub enum Sentence {
@@ -324,9 +375,15 @@ pub fn expression() -> Grammar<char, Expression> {
     ];
     let binary = vec![
         Rc::new(|left: & Expression, right: & Expression| match (left, right) {
-            (Expression::UnOp(_), Expression::E(_)) => Some(Expression::E(format!("({:?} {:?})", left, right))),
-            (Expression::E(_), Expression::BinOp(_)) => Some(Expression::EBO(format!("({:?} {:?})", left, right))),
-            (Expression::EBO(_), Expression::E(_)) => Some(Expression::E(format!("({:?} {:?})", left, right))),
+            (Expression::UnOp(_), Expression::E(_)) => Some(
+                Expression::E(format!("({:?} {:?})", left, right))
+            ),
+            (Expression::E(_), Expression::BinOp(_)) => Some(
+                Expression::EBO(format!("({:?} {:?})", left, right))
+            ),
+            (Expression::EBO(_), Expression::E(_)) => Some(
+                Expression::E(format!("({:?} {:?})", left, right))
+            ),
             _ => None
         }) as Rc<Binary<Expression>>
      ];
@@ -334,14 +391,11 @@ pub fn expression() -> Grammar<char, Expression> {
 }
 ```
 
-We now have a way of _deserializing_ any data structure, even a recursive one,
-from a sequence of characters, strings (or for that matter, any other data
-type).
+The `main` function demonstrates the nondeterminism of the binary tree grammar
+by displaying 42 "trees" for the input sequence `abcdef`.
 
-1. Collect various constructors of the desired data structure. Each will take
-   one or more arguments of different types. Each of these _intermediate types_
-   may have its own constructors.
-2. Introduce new constructors and types so that all constructors take one or two
-   arguments (conversion to Chomsky normal form)
-3. Include the desired data structure in an `enum` with variants for each
-   intermediate type.
+It demonstrates the determinism of the sentence grammar by displaying a single "tree" for the input sequence `the cat sat on the mat`.
+
+It demonstrates the nondeterminism of the expression grammar by displaying 5 "trees" for the input sequence `-1+2*4`.
+
+The full code is [here](https://github.com/mspandit/rust-binary-tree-generator/tree/2026-05-14).
