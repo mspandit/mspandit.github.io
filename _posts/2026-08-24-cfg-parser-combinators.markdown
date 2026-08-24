@@ -826,4 +826,4 @@ how to reduce repetitive computation for recursive grammars using memoization.
 Although I haven't implemented this yet, my use of pure functions (that always
 return the same output for the same input) will facilitate memoization.
 
-The full code is here.
+The full code is [here](https://github.com/mspandit/rust-binary-tree-generator/tree/2026-08-24).
