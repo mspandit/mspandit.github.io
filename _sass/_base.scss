@@ -1,3 +1,5 @@
+@use "sass:color";
+@use "variables";
 /**
  * Reset some basic elements
  */
@@ -14,9 +16,10 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-    color: $text-color;
-    background-color: $background-color;
+    font: variables.$base-font-weight calc(variables.$base-font-size / variables.$base-line-height) variables.$base-font-family;
+    line-height: 1.5;
+    color: variables.$text-color;
+    background-color: variables.$background-color;
     -webkit-text-size-adjust: 100%;
     -webkit-font-feature-settings: "kern" 1;
     -moz-font-feature-settings: "kern" 1;
@@ -31,14 +34,12 @@ body {
  * Set `margin-bottom` to maintain vertical rhythm
  */
 h1, h2, h3, h4, h5, h6,
-%vertical-rhythm {
-    margin-top: $spacing-unit / 2;
-}
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-bottom: $spacing-unit / 3;
+    margin-bottom: calc(variables.$spacing-unit / 2);
 }
+
 
 
 /**
@@ -59,7 +60,7 @@ figure > img {
 }
 
 figcaption {
-    font-size: $small-font-size;
+    font-size: variables.$small-font-size;
 }
 
 
@@ -68,7 +69,7 @@ figcaption {
  * Lists
  */
 ul, ol {
-    margin-left: $spacing-unit;
+    margin-left: variables.$spacing-unit;
 }
 
 li {
@@ -83,48 +84,63 @@ li {
 /**
  * Headings
  */
-h1, h2, h3, h4, h5, h6, .nav {
+h1, h2, h3, h4, h5, h6 {
     font-family: Helvetica, Arial, sans-serif;
-    font-weight: $base-font-weight;
+    font-weight: variables.$base-font-weight;
 }
 
-td, th {
-    padding-left: calc($spacing-unit / 4);
-    padding-right: calc($spacing-unit / 4);
-    padding-top: calc($spacing-unit / 4);
-    padding-bottom: calc($spacing-unit / 4);
+/* Add space above headings to improve vertical rhythm */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: calc(variables.$spacing-unit / 1.0);
 }
 
+td {
+    padding-top: calc(variables.$spacing-unit / 4.0);
+    padding-bottom: calc(variables.$spacing-unit / 4.0);
+    padding-left: calc(variables.$spacing-unit / 4.0);
+    padding-right: calc(variables.$spacing-unit / 4.0);
+}
 
 /**
  * Links
  */
 a {
-    color: $brand-color;
-    text-decoration: none;
+    color: variables.$brand-color;
+    text-decoration: underline;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: color.adjust(variables.$brand-color, $lightness: -15%);
     }
 
     &:hover {
-        color: $text-color;
-        text-decoration: underline;
+        color: variables.$text-color;
+        text-decoration: none;
     }
 }
 
+h2 a {
+    color: variables.$brand-color;
+    text-decoration: none;
+
+    &:visited {
+        color: color.adjust(variables.$brand-color, $lightness: -15%);
+    }
+
+    &:hover {
+        color: variables.$text-color;
+        text-decoration: underline;
+    }
+}
 
 
 /**
  * Blockquotes
  */
 blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
-    font-size: 18px;
+    color: variables.$grey-color;
+    border-left: 4px solid variables.$grey-color-light;
+    padding-left: calc(variables.$spacing-unit / 2);
     letter-spacing: -1px;
-    font-style: italic;
 
     > :last-child {
         margin-bottom: 0;
@@ -138,15 +154,14 @@ blockquote {
  */
 pre,
 code {
-  font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
-    font-size: 12px;
-    border: 1px solid $grey-color-light;
+    font-size: calc(variables.$base-font-size / 1.2);
+    border: 1px solid variables.$grey-color-light;
     border-radius: 3px;
     background-color: #eef;
 }
 
 code {
-    padding: 1px 5px;
+    padding: 1px 1px 1px 3px;
 }
 
 pre {
@@ -166,19 +181,19 @@ pre {
  * Wrapper
  */
 .wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width: -webkit-calc(variables.$content-width - (variables.$spacing-unit * 2));
+    max-width:         calc(variables.$content-width - (variables.$spacing-unit * 2));
     margin-right: auto;
     margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
+    padding-right: variables.$spacing-unit;
+    padding-left: variables.$spacing-unit;
     @extend %clearfix;
 
-    @include media-query($on-laptop) {
-        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-        padding-right: $spacing-unit / 2;
-        padding-left: $spacing-unit / 2;
+    @include variables.media-query(variables.$on-laptop) {
+        max-width: -webkit-calc(variables.$content-width - variables.$spacing-unit);
+        max-width:         calc(variables.$content-width - variables.$spacing-unit);
+        padding-right: calc(variables.$spacing-unit / 2);
+        padding-left: calc(variables.$spacing-unit / 2);
     }
 }
 
@@ -210,7 +225,7 @@ pre {
         vertical-align: middle;
 
         path {
-            fill: $grey-color;
+            fill: variables.$grey-color;
         }
     }
 }
