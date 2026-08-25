@@ -1,5 +1,39 @@
 @use "sass:color";
-@use "variables";
+
+$base-font-weight: 400;
+$base-font-size:   12pt;
+$base-line-height: 1.0;
+$base-font-family: "Baskerville", serif;
+$text-color:       #000;
+$background-color: #fdfdfd;
+$spacing-unit:     30px;
+$small-font-size:  $base-font-size * 0.875;
+$brand-color:      #2a7ae2;
+$grey-color:       #828282;
+
+$grey-color-light: color.adjust($grey-color, $lightness: 40%);
+$grey-color-dark:  color.adjust($grey-color, $lightness: -25%);
+
+// Width of the content area
+$content-width:    700px;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
 /**
  * Reset some basic elements
  */
@@ -16,10 +50,10 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-    font: variables.$base-font-weight calc(variables.$base-font-size / variables.$base-line-height) variables.$base-font-family;
+    font: $base-font-weight calc($base-font-size / $base-line-height) $base-font-family;
     line-height: 1.5;
-    color: variables.$text-color;
-    background-color: variables.$background-color;
+    color: $text-color;
+    background-color: $background-color;
     -webkit-text-size-adjust: 100%;
     -webkit-font-feature-settings: "kern" 1;
     -moz-font-feature-settings: "kern" 1;
@@ -37,7 +71,7 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-bottom: calc(variables.$spacing-unit / 2);
+    margin-bottom: calc($spacing-unit / 2);
 }
 
 
@@ -60,7 +94,7 @@ figure > img {
 }
 
 figcaption {
-    font-size: variables.$small-font-size;
+    font-size: $small-font-size;
 }
 
 
@@ -69,7 +103,7 @@ figcaption {
  * Lists
  */
 ul, ol {
-    margin-left: variables.$spacing-unit;
+    margin-left: $spacing-unit;
 }
 
 li {
@@ -86,48 +120,48 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
     font-family: Helvetica, Arial, sans-serif;
-    font-weight: variables.$base-font-weight;
+    font-weight: $base-font-weight;
 }
 
 /* Add space above headings to improve vertical rhythm */
 h1, h2, h3, h4, h5, h6 {
-    margin-top: calc(variables.$spacing-unit / 1.0);
+    margin-top: calc($spacing-unit / 1.0);
 }
 
 td {
-    padding-top: calc(variables.$spacing-unit / 4.0);
-    padding-bottom: calc(variables.$spacing-unit / 4.0);
-    padding-left: calc(variables.$spacing-unit / 4.0);
-    padding-right: calc(variables.$spacing-unit / 4.0);
+    padding-top: calc($spacing-unit / 4.0);
+    padding-bottom: calc($spacing-unit / 4.0);
+    padding-left: calc($spacing-unit / 4.0);
+    padding-right: calc($spacing-unit / 4.0);
 }
 
 /**
  * Links
  */
 a {
-    color: variables.$brand-color;
+    color: $brand-color;
     text-decoration: underline;
 
     &:visited {
-        color: color.adjust(variables.$brand-color, $lightness: -15%);
+        color: color.adjust($brand-color, $lightness: -15%);
     }
 
     &:hover {
-        color: variables.$text-color;
+        color: $text-color;
         text-decoration: none;
     }
 }
 
 h2 a {
-    color: variables.$brand-color;
+    color: $brand-color;
     text-decoration: none;
 
     &:visited {
-        color: color.adjust(variables.$brand-color, $lightness: -15%);
+        color: color.adjust($brand-color, $lightness: -15%);
     }
 
     &:hover {
-        color: variables.$text-color;
+        color: $text-color;
         text-decoration: underline;
     }
 }
@@ -137,9 +171,9 @@ h2 a {
  * Blockquotes
  */
 blockquote {
-    color: variables.$grey-color;
-    border-left: 4px solid variables.$grey-color-light;
-    padding-left: calc(variables.$spacing-unit / 2);
+    color: $grey-color;
+    border-left: 4px solid $grey-color-light;
+    padding-left: calc($spacing-unit / 2);
     letter-spacing: -1px;
 
     > :last-child {
@@ -154,8 +188,8 @@ blockquote {
  */
 pre,
 code {
-    font-size: calc(variables.$base-font-size / 1.2);
-    border: 1px solid variables.$grey-color-light;
+    font-size: calc($base-font-size / 1.2);
+    border: 1px solid $grey-color-light;
     border-radius: 3px;
     background-color: #eef;
 }
@@ -181,19 +215,19 @@ pre {
  * Wrapper
  */
 .wrapper {
-    max-width: -webkit-calc(variables.$content-width - (variables.$spacing-unit * 2));
-    max-width:         calc(variables.$content-width - (variables.$spacing-unit * 2));
+    max-width: -webkit-calc($content-width - ($spacing-unit * 2));
+    max-width:         calc($content-width - ($spacing-unit * 2));
     margin-right: auto;
     margin-left: auto;
-    padding-right: variables.$spacing-unit;
-    padding-left: variables.$spacing-unit;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
     @extend %clearfix;
 
-    @include variables.media-query(variables.$on-laptop) {
-        max-width: -webkit-calc(variables.$content-width - variables.$spacing-unit);
-        max-width:         calc(variables.$content-width - variables.$spacing-unit);
-        padding-right: calc(variables.$spacing-unit / 2);
-        padding-left: calc(variables.$spacing-unit / 2);
+    @include media-query($on-laptop) {
+        max-width: -webkit-calc($content-width - $spacing-unit);
+        max-width:         calc($content-width - $spacing-unit);
+        padding-right: calc($spacing-unit / 2);
+        padding-left: calc($spacing-unit / 2);
     }
 }
 
@@ -225,7 +259,7 @@ pre {
         vertical-align: middle;
 
         path {
-            fill: variables.$grey-color;
+            fill: $grey-color;
         }
     }
 }
